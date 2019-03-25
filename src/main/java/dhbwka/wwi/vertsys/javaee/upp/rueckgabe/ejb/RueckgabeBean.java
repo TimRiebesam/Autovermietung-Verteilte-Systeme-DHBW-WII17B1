@@ -51,4 +51,11 @@ public class RueckgabeBean extends EntityBean<Rueckgabe, Long> {
         em.remove(rueckgabe);
     }
     
+    public void deleteAllRueckgaben(){
+        List<Rueckgabe> rueckgaben = getAllRueckgaben();
+        rueckgaben.forEach(rueckgabe -> {
+            deleteRueckgabe(rueckgabe);
+        });
+    }
+    
 }
