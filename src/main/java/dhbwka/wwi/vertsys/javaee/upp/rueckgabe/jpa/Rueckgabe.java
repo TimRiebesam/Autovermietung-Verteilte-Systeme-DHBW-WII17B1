@@ -12,7 +12,7 @@
 
 package dhbwka.wwi.vertsys.javaee.upp.rueckgabe.jpa;
 
-import dhbwka.wwi.vertsys.javaee.upp.common.jpa.User;
+import dhbwka.wwi.vertsys.javaee.upp.buchung.jpa.Buchung;
 import java.io.Serializable;
 import java.util.Date;
 import javax.persistence.Entity;
@@ -23,6 +23,7 @@ import javax.persistence.Lob;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.TableGenerator;
+import javax.validation.constraints.NotNull;
 
 /**
  *
@@ -32,42 +33,54 @@ import javax.persistence.TableGenerator;
 @Table(name = "UPP_Rueckgabe")
 public class Rueckgabe implements Serializable{
     
-    private static final long serialVersionUID = 1L;
+    //private static final long serialVersionUID = 1L;
 
     @Id
     @GeneratedValue(strategy = GenerationType.TABLE, generator = "rueckgabe_ids")
     @TableGenerator(name = "rueckgabe_ids", initialValue = 0, allocationSize = 50)
     private long id;
     
-//    @OneToOne
-//    @NotNull(message = "Zu einer Rückgabe wird ein Auftrag benötigt.")
-//    private Auftrag auftrag;
+    @OneToOne
+    @NotNull(message = "Zu einer Rückgabe wird ein Auftrag benötigt.")
+    private Buchung buchung;
     
     @Lob
     private String schadensMeldung;
     
-    private Date rueckgabeDatum;
+    private Date rueckgabeDatum; 
     
     private String rueckgabeOrt;
     
     private int gesamtZufriedenheit;
     
-    private int fahrzeugtZufriedenheit;
+    private int fahrzeugZufriedenheit;
+    
+    @Lob
+    private String kommentar;
     
     public Rueckgabe(){
         
     }
     
-    public Rueckgabe(String schadensMeldung, String rueckgabeOrt, int gesamtZufriedenheit, int fahrzeugtZufriedenheit){
+    public Rueckgabe(String schadensMeldung, String rueckgabeOrt, int gesamtZufriedenheit, int fahrzeugZufriedenheit, String kommentar){
         this.schadensMeldung = schadensMeldung;
         this.rueckgabeDatum = new Date();
         this.rueckgabeOrt = rueckgabeOrt;
         this.gesamtZufriedenheit = gesamtZufriedenheit;
-        this.fahrzeugtZufriedenheit = fahrzeugtZufriedenheit;
+        this.fahrzeugZufriedenheit = fahrzeugZufriedenheit;
+        this.kommentar = kommentar;
     }
 
     public long getId() {
         return id;
+    }
+    
+    public Buchung getBuchung(){
+        return buchung;
+    }
+    
+    public void setBuchung(Buchung buchung){
+        this.buchung = buchung;
     }
 
     public String getSchadensMeldung() {
@@ -102,12 +115,19 @@ public class Rueckgabe implements Serializable{
         this.gesamtZufriedenheit = gesamtZufriedenheit;
     }
 
-    public int getFahrzeugtZufriedenheit() {
-        return fahrzeugtZufriedenheit;
+    public int getFahrzeugZufriedenheit() {
+        return fahrzeugZufriedenheit;
     }
 
-    public void setFahrzeugtZufriedenheit(int fahrzeugtZufriedenheit) {
-        this.fahrzeugtZufriedenheit = fahrzeugtZufriedenheit;
+    public void setFahrzeugZufriedenheit(int fahrzeugZufriedenheit) {
+        this.fahrzeugZufriedenheit = fahrzeugZufriedenheit;
     }
     
+    public String getKommentar() {
+        return kommentar;
+    }
+
+    public void setKommentar(String kommentar) {
+        this.kommentar = kommentar;
+    }
 }

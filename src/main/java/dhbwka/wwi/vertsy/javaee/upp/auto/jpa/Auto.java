@@ -10,7 +10,7 @@
  * Creative Commons Namensnennung 4.0 International Lizenz.
  */
 
-package dhbwka.wwi.vertsy.javaee.upp.details.jpa;
+package dhbwka.wwi.vertsy.javaee.upp.auto.jpa;
 
 import dhbwka.wwi.vertsys.javaee.upp.common.jpa.User;
 import java.io.Serializable;
