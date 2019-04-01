@@ -9,9 +9,9 @@
  * Creative Commons Namensnennung 4.0 International Lizenz.
  */
 
-package dhbwka.wwi.vertsy.javaee.upp.auto.ejb;
+package dhbwka.wwi.vertsys.javaee.upp.auto.ejb;
 
-import dhbwka.wwi.vertsy.javaee.upp.auto.jpa.Auto;
+import dhbwka.wwi.vertsys.javaee.upp.auto.jpa.Auto;
 import dhbwka.wwi.vertsys.javaee.upp.common.ejb.EntityBean;
 import java.util.List;
 import javax.annotation.security.RolesAllowed;
@@ -57,16 +57,5 @@ public class AutoBean extends EntityBean<Auto, Long> {
          em.remove(auto);
     }
     
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
+ 
 }

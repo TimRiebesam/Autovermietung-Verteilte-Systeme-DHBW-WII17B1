@@ -10,7 +10,7 @@
  * Creative Commons Namensnennung 4.0 International Lizenz.
  */
 
-package dhbwka.wwi.vertsy.javaee.upp.auto.jpa;
+package dhbwka.wwi.vertsys.javaee.upp.auto.jpa;
 
 import dhbwka.wwi.vertsys.javaee.upp.common.jpa.User;
 import java.io.Serializable;
@@ -33,8 +33,7 @@ public class Auto implements Serializable {
     private static final long serialVersionUID = 1L;
   
     @Id
-    @GeneratedValue(strategy = GenerationType.TABLE, generator = "auto_ids")
-    @TableGenerator(name = "auto_ids", initialValue = 0, allocationSize = 50)
+    @GeneratedValue
     private long id;
     
     private String marke;
@@ -166,17 +165,4 @@ public class Auto implements Serializable {
     public void setPreis(double preis) {
         this.preis = preis;
     }
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
 }//end of class

@@ -1,0 +1,30 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 01.04.2019, 13:55:40
+    Author     : Nicolas
+*/
+
+/*CSS-Settings für Klasse auto_show.jsp*/
+#labelDetail {
+    text-decoration: underline;
+}
+
+#boxDetail{
+    padding: 20px;
+}
+
+table{
+    padding-left: 20px;
+    text-align: left;
+
+}
+
+td{
+    min-width: 150pt;
+}
+  
+
