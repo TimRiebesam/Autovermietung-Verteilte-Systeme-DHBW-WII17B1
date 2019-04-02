@@ -47,6 +47,7 @@ public class Auto implements Serializable {
     private double standKM_ende;
     private String getriebetyp;
     private double preis;
+    private String bildquelle;
     
     
     //Konstruktoren
@@ -54,7 +55,7 @@ public class Auto implements Serializable {
         
     }
 
-    public Auto(String marke, String modell, String groeße, String typ, String kraftstoff, int anzahl_sitzplaetze, int anzahl_tueren, double standKM_anfang, double standKM_ende, String getriebetyp, double preis) {
+    public Auto(String marke, String modell, String groeße, String typ, String kraftstoff, int anzahl_sitzplaetze, int anzahl_tueren, double standKM_anfang, double standKM_ende, String getriebetyp, double preis, String bildquelle) {
         this.marke = marke;
         this.modell = modell;
         this.groeße = groeße;
@@ -66,6 +67,7 @@ public class Auto implements Serializable {
         this.standKM_ende = standKM_ende;
         this.getriebetyp = getriebetyp;
         this.preis = preis;
+        this.bildquelle = bildquelle;
     }
     
     
@@ -165,4 +167,14 @@ public class Auto implements Serializable {
     public void setPreis(double preis) {
         this.preis = preis;
     }
+
+    public String getBildquelle() {
+        return bildquelle;
+    }
+
+    public void setBildquelle(String bildquelle) {
+        this.bildquelle = bildquelle;
+    }
+    
+    
 }//end of class
