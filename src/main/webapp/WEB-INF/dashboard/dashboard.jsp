@@ -34,6 +34,12 @@
         <div class="menuitem">
             <a href="<c:url value="/app/tasks/categories/"/>">Kategorien bearbeiten</a>
         </div>
+        
+        <div class="menuitem">
+            <a href="<c:url value="/app/rueckgabe/new"/>"> Neue Rückgabe anlegen</a>
+        </div>
+        
+     
    
     </jsp:attribute>
 
