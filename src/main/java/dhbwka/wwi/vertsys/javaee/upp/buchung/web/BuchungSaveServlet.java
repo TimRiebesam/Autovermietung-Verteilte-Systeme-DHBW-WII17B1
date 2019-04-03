@@ -91,9 +91,20 @@ public class BuchungSaveServlet extends HttpServlet {
 			message.setFrom(new InternetAddress("lagerteamapp2018@gmail.com"));
 			message.setRecipients(Message.RecipientType.TO,
 				InternetAddress.parse("11marci11@gmail.com"));
-			message.setSubject("Ihre Bestellung beim Auto-Mietservice");
-			message.setText("Hallo liebe Testperson,"
-				+ "\n\n No spam to my email, please!");
+			message.setSubject("Buchungsbestätigung: Ihre Bestellung beim Auto-Mietservice");
+			message.setText("Hallo "+kunde+","
+				+ "\n\n vielen Dank für Ihre Bestellung beim Auto-Mietservice."
+                                + "\n\n Hier eine Übersicht Ihrer Bestellung mit dem Link für die Rückgabe des Fahrzeugs."
+                                + "\n\n BuchungsID: "+buchungsId+"."
+                                + "\n\n Fahrzeug: "+fahrzeug+"."
+                                + "\n\n Preis: "+preis+"."
+                                + "\n\n Start-Datum: "+startdatum+"."
+                                + "\n\n End-Datum: "+enddatum+"."
+                                + "\n\n Abholort: "+abholort+"."
+                                + "\n\n Zahlungsmethode: "+zahlungsmethode+"."
+                                + "</br>"
+                                + "Sie können Ihre Fahrzeug über folgenden  Link (https://localhost:8443/upp/app/rueckgabe/new?id="+buchungsId+") zurück geben: <a>."
+                                );
 
 			Transport.send(message);
 
