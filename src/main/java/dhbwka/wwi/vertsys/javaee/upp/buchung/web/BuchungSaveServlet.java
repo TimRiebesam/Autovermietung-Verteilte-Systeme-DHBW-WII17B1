@@ -36,18 +36,37 @@ public class BuchungSaveServlet extends HttpServlet {
     public void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         
-        //Liest die ID des angefragten Autos aus der URL
-       // long id = Long.parseLong(request.getParameter("id"));
-             
-        /*Ausgewähltes Auto anhand der AutoID aus der Datenbank auslesen und im Request-Context
-          abzulegen um sie der JSP zur Verfügung zu stellen */
-       // Buchung buchung = this.buchungBean.findById(id);
-     
-      //  request.setAttribute("buchung", buchung);
-        
-         
-        // Anfrage an die JSP weiterleiten
-        request.getRequestDispatcher("/WEB-INF/buchung/buchung_save.jsp").forward(request, response);
-    }//end of doGet
+        String username = request.getParameter("signup_username");
 
+        // Anfrage an die JSP weiterleiten
+        request.getRequestDispatcher("/WEB-INF/buchung/buchung.jsp").forward(request, response);
+    }//end of doGet
+    
+    @Override
+    public void doPost(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        
+        List<String> infos = new ArrayList<>();
+        
+ 
+        String buchungsId = request.getParameter("buchungsId");
+        String kunde = request.getParameter("kunde");
+        String fahrzeug = request.getParameter("fahrzeug");
+        String startdatum = request.getParameter("startdatum");
+        String enddatum = request.getParameter("enddatum");
+        String preis = request.getParameter("preis");
+        String abholort = request.getParameter("abholort");
+        String zahlungsmethode = request.getParameter("zahlungsmethode");
+        
+        if(!zahlungsmethode.equals("") && !abholort.equals("") ){
+                infos.add("Wird gesendet!");
+                request.setAttribute("infos", infos);
+                doGet(request, response);
+            
+        }
+        
+        
+        
+        
+    }
 }

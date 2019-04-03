@@ -41,21 +41,25 @@
                 <label for="buchungsId">Buchungs-ID:<span class="required"></span></label>
                 <input type="text" name="buchungsId" value="${param.buchungsId}" placeholder="Buchungs-ID" required/>
                 
-                <%-- Kundennummer ---%>
-                <label for="buchungsId">Kunden-ID:<span class="required"></span></label>
-                <input type="text" name="buchungsId" value="${param.buchungsId}" placeholder="Kundenname" required/>
-                
+                <%-- Kunde ---%>
+                <label for="kunde">Kunden-ID:<span class="required"></span></label>
+                <input type="text" name="kunde" value="${param.kunde}" placeholder="Kundenname" required/>
+                                
                 <%-- Fahrzeug ---%>
-                <label for="auto">Fahrzeug:<span class="required"></span></label>
-                <input type="text" name="fahrzeug"  value="${param.fahrzeugId}" placeholder="Auto" required/>
+                <label for="fahrzeug">Fahrzeug:<span class="required"></span></label>
+                <input type="text" name="fahrzeug"  value="${param.fahrzeug}" placeholder="fahrzeug" required/>
                 
-                <%-- Fahrzeug ---%>
-                <label for="auto">Fahrzeug:<span class="required"></span></label>
-                <input type="text" name="fahrzeug"  value="${param.fahrzeugId}" placeholder="Auto" required/>
+                <%-- Start Datum ---%>
+                <label for="startdatum">Start-Datum:<span class="required"></span></label>
+                <input type="text" name="startdatum"  value="${param.startdatum}" placeholder="Start Datum" required/>
                 
-                <%-- Fahrzeug ---%>
-                <label for="auto">Fahrzeug:<span class="required"></span></label>
-                <input type="text" name="fahrzeug"  value="${param.fahrzeugId}" placeholder="Auto" required/>
+                <%-- End-Datum ---%>
+                <label for="enddatum">End-Datum:<span class="required"></span></label>
+                <input type="text" name="enddatum"  value="${param.enddatum}" placeholder="End Datum" required/>
+                
+                <%-- Abholort---%>
+                <label for="abholort">Abholort:<span class="required"></span></label>
+                <input type="text" name="abholort"  value="${param.abholort}" placeholder="End Datum" required/>
                 
                 <%-- Zahlungsmethode --%>
                 <label for="zahlungsmethode">Zahlungsmethode:
@@ -66,16 +70,18 @@
                     <option value="SWIFT Überweisung" ${param.zahlungsmethode == 'SWIFT Überweisung' ? 'selected' : ''}>SWIFT Überweisung</option>
                     <option value="Kreditkarte" ${param.zahlungsmethode == 'Kreditkarte' ? 'selected' : ''}>Kreditkarte</option>
                 </select>
-                
+                </br>
+                </br>
+
                 
                 <button class="icon-pencil" type="submit" name="action" value="save">
-                        Zahlungspflichtig bestätigen!
+                        Zahlungspflichtig bestellen!
                 </button>
                 
-                <c:if test="${!empty errors}">
-                <ul class="errors">
-                    <c:forEach items="${errors}" var="error">
-                        <li>${error}</li>
+                <c:if test="${!empty infos}">
+                <ul class="infos">
+                    <c:forEach items="${infos}" var="error">
+                        <li>${info}</li>
                     </c:forEach>
                 </ul>
             </c:if>

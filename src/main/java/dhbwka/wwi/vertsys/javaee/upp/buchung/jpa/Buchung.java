@@ -11,7 +11,8 @@
  */
 
 package dhbwka.wwi.vertsys.javaee.upp.buchung.jpa;
-
+import dhbwka.wwi.vertsys.javaee.upp.auto.jpa.Auto;
+import dhbwka.wwi.vertsys.javaee.upp.kunde.jpa.Kunde;
 import dhbwka.wwi.vertsys.javaee.upp.common.jpa.User;
 import java.io.Serializable;
 import java.util.Date;
@@ -23,6 +24,7 @@ import javax.persistence.Lob;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.TableGenerator;
+import javax.validation.constraints.NotNull;
 
 /**
  *
@@ -31,18 +33,19 @@ import javax.persistence.TableGenerator;
 @Entity
 @Table(name = "UPP_Buchung")
 public class Buchung implements Serializable{
-    
-    private static final long serialVersionUID = 1L;
 
     @Id
     @GeneratedValue(strategy = GenerationType.TABLE, generator = "buchung_ids")
     @TableGenerator(name = "buchung_ids", initialValue = 0, allocationSize = 50)
     private long id;
     
-//    @OneToOne
-//    @NotNull(message = "Zu einer Buchung wird ein Fahrzeug und Kunde benötigt.")
-//    private Fahrzeug fahrzeug;
-//    private Kunde kunde;
+        @OneToOne
+    @NotNull(message = "Zu einer Buchung wird ein Kunde benötigt.")
+    private Kunde kunde;
+    
+    @OneToOne
+    @NotNull(message = "Zu einer Buchung wird ein Auto benötigt.")
+    private Auto auto;
     
     @Lob
     private String buchungNr;
@@ -55,6 +58,9 @@ public class Buchung implements Serializable{
     
     private String buchungAbholort;
     
+    public class genBuchungsId{
+        
+    }
     
     public Buchung(){
         
