@@ -63,7 +63,7 @@ public class SignUpServlet extends HttpServlet {
         String tel = request.getParameter("signup_tel");
         String strasse = request.getParameter("signup_strasse");
         String plz = request.getParameter("signup_plz");
-        String ort = request.getParameter("signup_plz");
+        String ort = request.getParameter("signup_ort");
         
         
         // Eingaben prüfen
