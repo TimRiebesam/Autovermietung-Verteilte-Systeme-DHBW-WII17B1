@@ -36,6 +36,10 @@
         </div>
         
         <div class="menuitem">
+            <a href="<c:url value="/app/buchung/new"/>"> Buchung</a>
+        </div>
+        
+        <div class="menuitem">
             <a href="<c:url value="/app/rueckgabe/new"/>"> Neue Rückgabe anlegen</a>
         </div>
         
