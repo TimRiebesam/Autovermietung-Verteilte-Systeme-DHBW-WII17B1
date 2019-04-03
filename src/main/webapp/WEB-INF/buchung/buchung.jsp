@@ -81,7 +81,7 @@
                 <c:if test="${!empty infos}">
                 <ul class="infos">
                     <c:forEach items="${infos}" var="error">
-                        <li>${info}</li>
+                        <li>${infos}</li>
                     </c:forEach>
                 </ul>
             </c:if>

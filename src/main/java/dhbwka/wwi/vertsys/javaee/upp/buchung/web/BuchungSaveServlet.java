@@ -6,7 +6,14 @@
 package dhbwka.wwi.vertsys.javaee.upp.buchung.web;
 
 
-
+import java.util.Properties;
+import javax.mail.Message;
+import javax.mail.MessagingException;
+import javax.mail.PasswordAuthentication;
+import javax.mail.Session;
+import javax.mail.Transport;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeMessage;
 import dhbwka.wwi.vertsys.javaee.upp.buchung.ejb.BuchungBean;
 import dhbwka.wwi.vertsys.javaee.upp.buchung.jpa.Buchung;
 import java.io.IOException;
@@ -59,8 +66,43 @@ public class BuchungSaveServlet extends HttpServlet {
         String zahlungsmethode = request.getParameter("zahlungsmethode");
         
         if(!zahlungsmethode.equals("") && !abholort.equals("") ){
-                infos.add("Wird gesendet!");
+                // ZEIGE INFO AN
+                infos.add("Vielen Dank für Ihre Bestellung!</br>Sie erhalten eine Email mit allen wichtigen Informationen!");
                 request.setAttribute("infos", infos);
+                // SENDE EMAIL
+                final String username = "lagerteamapp2018@gmail.com";
+		final String password = "#LagerTeamApp2018";
+
+		Properties props = new Properties();
+		props.put("mail.smtp.auth", "true");
+		props.put("mail.smtp.starttls.enable", "true");
+		props.put("mail.smtp.host", "smtp.gmail.com");
+		props.put("mail.smtp.port", "587");
+
+		Session session = Session.getInstance(props,
+		  new javax.mail.Authenticator() {
+                        @Override
+			protected PasswordAuthentication getPasswordAuthentication() {
+				return new PasswordAuthentication(username, password);
+			}
+		  });
+		try {
+			Message message = new MimeMessage(session);
+			message.setFrom(new InternetAddress("lagerteamapp2018@gmail.com"));
+			message.setRecipients(Message.RecipientType.TO,
+				InternetAddress.parse("11marci11@gmail.com"));
+			message.setSubject("Ihre Bestellung beim Auto-Mietservice");
+			message.setText("Hallo liebe Testperson,"
+				+ "\n\n No spam to my email, please!");
+
+			Transport.send(message);
+
+			System.out.println("Done");
+
+		} catch (MessagingException e) {
+			throw new RuntimeException(e);
+		}
+                
                 doGet(request, response);
             
         }
