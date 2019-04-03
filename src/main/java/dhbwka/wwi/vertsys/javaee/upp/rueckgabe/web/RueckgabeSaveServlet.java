@@ -13,12 +13,11 @@ package dhbwka.wwi.vertsys.javaee.upp.rueckgabe.web;
 
 import dhbwka.wwi.vertsys.javaee.upp.buchung.ejb.BuchungBean;
 import dhbwka.wwi.vertsys.javaee.upp.buchung.jpa.Buchung;
-import dhbwka.wwi.vertsys.javaee.upp.common.web.WebUtils;
+import dhbwka.wwi.vertsys.javaee.upp.common.ejb.ValidationBean;
 import dhbwka.wwi.vertsys.javaee.upp.rueckgabe.ejb.RueckgabeBean;
 import dhbwka.wwi.vertsys.javaee.upp.rueckgabe.jpa.Rueckgabe;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 import javax.ejb.EJB;
 import javax.servlet.ServletException;
@@ -26,6 +25,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -39,6 +39,9 @@ public class RueckgabeSaveServlet extends HttpServlet{
     
     @EJB
     private BuchungBean buchungBean;
+    
+    @EJB
+    ValidationBean validationBean;
     
     @Override
     public void doGet(HttpServletRequest request, HttpServletResponse response)
@@ -63,10 +66,9 @@ public class RueckgabeSaveServlet extends HttpServlet{
         String gesamtZufriedenheit = request.getParameter("gesamtZufriedenheit");
         String kommentar = request.getParameter("kommentar");
         
+        Rueckgabe rueckgabe = new  Rueckgabe(schadensmeldung, abstellort, Integer.parseInt(gesamtZufriedenheit), Integer.parseInt(fahrzeugZufriedenheit), kommentar);
         
-        if(buchungsId != null && abstellort != null && fahrzeugZufriedenheit != null && gesamtZufriedenheit != null){
-            Rueckgabe rueckgabe = new  Rueckgabe(schadensmeldung, abstellort, Integer.parseInt(gesamtZufriedenheit), Integer.parseInt(fahrzeugZufriedenheit), kommentar);
-            
+        if(buchungsId != null && abstellort != null && fahrzeugZufriedenheit != null && gesamtZufriedenheit != null){            
             if(!buchungsId.equals("") && !abstellort.equals("") && !fahrzeugZufriedenheit.equals("") && !gesamtZufriedenheit.equals("")){
                 try {
                     long bId = Long.parseLong(buchungsId);
@@ -79,20 +81,25 @@ public class RueckgabeSaveServlet extends HttpServlet{
                     } 
                     else{
                         errors.add("Es existiert keine Buchung zu der ID: " + buchungsId + "<br>Bitte überprüfen Sie Ihre Eingabe!");
-                        request.setAttribute("errors", errors);
-                        doGet(request, response);
                     }
                 } catch (Exception e) {
                     errors.add("Die Buchungs-ID darf ausschließlich aus Zahlen bestehen!<br>Bitte überprüfen Sie Ihre Eingabe!");
-                    request.setAttribute("errors", errors);
-                    doGet(request, response);
                 }
             }
         
             else{
-                request.setAttribute("param", rueckgabe);
-                doGet(request, response);
+                errors.add("Fehler!<br>Bitte überprüfen Sie Ihre eingegebenen Daten!");
             }
+            
+            this.validationBean.validate(rueckgabe, errors);
+        }
+        
+        if(!errors.isEmpty()){
+            HttpSession session = request.getSession();
+            session.setAttribute("rueckgabe", rueckgabe);
+            session.setAttribute("errors", errors);
+            
+            response.sendRedirect(request.getRequestURI());
         }
         
     }

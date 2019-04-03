@@ -24,9 +24,9 @@ import javax.ejb.Stateless;
 
 @Stateless
 @RolesAllowed("app-user")
-public class ZahlungsmethodegBean extends EntityBean<Zahlungsmethode, Long> {
+public class ZahlungsmethodeBean extends EntityBean<Zahlungsmethode, Long> {
     
-    public ZahlungsmethodegBean() {
+    public ZahlungsmethodeBean() {
         super(Zahlungsmethode.class);
     }
     
