@@ -31,7 +31,7 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author Marcel Jakob
  */
-
+   
 @WebServlet(urlPatterns = {"/app/buchung/new"})
 public class BuchungSaveServlet extends HttpServlet {
     
@@ -65,7 +65,7 @@ public class BuchungSaveServlet extends HttpServlet {
         String abholort = request.getParameter("abholort");
         String zahlungsmethode = request.getParameter("zahlungsmethode");
         
-        if(!zahlungsmethode.equals("") && !abholort.equals("") ){
+        if(!zahlungsmethode.equals("")){
                 // ZEIGE INFO AN
                 infos.add("Vielen Dank für Ihre Bestellung!</br>Sie erhalten eine Email mit allen wichtigen Informationen!");
                 request.setAttribute("infos", infos);
@@ -102,7 +102,6 @@ public class BuchungSaveServlet extends HttpServlet {
                                 + "\n\n End-Datum: "+enddatum+"."
                                 + "\n\n Abholort: "+abholort+"."
                                 + "\n\n Zahlungsmethode: "+zahlungsmethode+"."
-                                + "</br>"
                                 + "Sie können Ihre Fahrzeug über folgenden  Link (https://localhost:8443/upp/app/rueckgabe/new?id="+buchungsId+") zurück geben: <a>."
                                 );
 

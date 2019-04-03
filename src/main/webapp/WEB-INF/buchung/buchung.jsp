@@ -39,27 +39,31 @@
                 
                 <%-- Buchungs ID --%>
                 <label for="buchungsId">Buchungs-ID:<span class="required"></span></label>
-                <input type="text" name="buchungsId" value="${param.buchungsId}" placeholder="Buchungs-ID" required/>
+                <input type="text" name="buchungsId" value="${param.buchungsId}"/>
                 
                 <%-- Kunde ---%>
                 <label for="kunde">Kunden-ID:<span class="required"></span></label>
-                <input type="text" name="kunde" value="${param.kunde}" placeholder="Kundenname" required/>
+                <input type="text" name="kunde" value="${param.kunde}"/>
                                 
                 <%-- Fahrzeug ---%>
                 <label for="fahrzeug">Fahrzeug:<span class="required"></span></label>
-                <input type="text" name="fahrzeug"  value="${param.fahrzeug}" placeholder="fahrzeug" required/>
+                <input type="text" name="fahrzeug" value="${param.fahrzeug}"/>
                 
                 <%-- Start Datum ---%>
                 <label for="startdatum">Start-Datum:<span class="required"></span></label>
-                <input type="text" name="startdatum"  value="${param.startdatum}" placeholder="Start Datum" required/>
+                <input type="text" name="startdatum" value="${param.startdatum}"/>
                 
                 <%-- End-Datum ---%>
                 <label for="enddatum">End-Datum:<span class="required"></span></label>
-                <input type="text" name="enddatum"  value="${param.enddatum}" placeholder="End Datum" required/>
+                <input type="text" name="enddatum" value="${param.enddatum}"/>
+                
+                <%-- Preis ---%>
+                <label for="preis">Preis:<span class="required"></span></label>
+                <input type="text" name="preis" value="${param.preis}"/>
                 
                 <%-- Abholort---%>
                 <label for="abholort">Abholort:<span class="required"></span></label>
-                <input type="text" name="abholort"  value="${param.abholort}" placeholder="End Datum" required/>
+                <input type="text" name="abholort" value="${param.abholort}"/>
                 
                 <%-- Zahlungsmethode --%>
                 <label for="zahlungsmethode">Zahlungsmethode:
