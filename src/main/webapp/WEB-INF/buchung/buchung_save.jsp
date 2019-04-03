@@ -43,7 +43,19 @@
                 
                 <%-- Kundennummer ---%>
                 <label for="buchungsId">Kunden-ID:<span class="required"></span></label>
-                <input type="text" name="buchungsId" disabled="true" value="${param.buchungsId}" placeholder="Buchungs-ID" required/>
+                <input type="text" name="buchungsId" value="${param.buchungsId}" placeholder="Kundenname" required/>
+                
+                <%-- Fahrzeug ---%>
+                <label for="auto">Fahrzeug:<span class="required"></span></label>
+                <input type="text" name="fahrzeug"  value="${param.fahrzeugId}" placeholder="Auto" required/>
+                
+                <%-- Fahrzeug ---%>
+                <label for="auto">Fahrzeug:<span class="required"></span></label>
+                <input type="text" name="fahrzeug"  value="${param.fahrzeugId}" placeholder="Auto" required/>
+                
+                <%-- Fahrzeug ---%>
+                <label for="auto">Fahrzeug:<span class="required"></span></label>
+                <input type="text" name="fahrzeug"  value="${param.fahrzeugId}" placeholder="Auto" required/>
                 
                 <%-- Zahlungsmethode --%>
                 <label for="zahlungsmethode">Zahlungsmethode:

@@ -42,14 +42,15 @@ public class UserBean {
      *
      * @param username
      * @param password
+
      * @throws UserBean.UserAlreadyExistsException
      */
-    public void signup(String username, String password) throws UserAlreadyExistsException {
+    public void signup(String username, String password, String vorname, String nachname, String email, String tel, String strasse, String plz, String ort) throws UserAlreadyExistsException {
         if (em.find(User.class, username) != null) {
             throw new UserAlreadyExistsException("Der Benutzername $B ist bereits vergeben.".replace("$B", username));
         }
 
-        User user = new User(username, password);
+        User user = new User(username, password, vorname, nachname, email, tel, strasse, plz, ort);
         user.addToGroup("app-user");
         em.persist(user);
     }
@@ -88,6 +89,8 @@ public class UserBean {
     public User update(User user) {
         return em.merge(user);
     }
+
+
 
     /**
      * Fehler: Der Benutzername ist bereits vergeben
