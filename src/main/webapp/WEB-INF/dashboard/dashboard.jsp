@@ -40,7 +40,7 @@
         </div>
         
         <div class="menuitem">
-            <a href="<c:url value="/app/rueckgabe/new"/>"> Neue Rückgabe anlegen</a>
+            <a href="<c:url value="/app/rueckgabe/new"/>"> Rueckgabeformular</a>
         </div>
         
      
