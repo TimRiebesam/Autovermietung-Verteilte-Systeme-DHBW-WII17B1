@@ -34,7 +34,7 @@ Creative Commons Namensnennung 4.0 International Lizenz.
     background-color: white;
     transition: background-color 0.25s;
 
-    color: #606060;
+    color: #f0f0f0;
     z-index: 1;
 }
 
@@ -77,18 +77,18 @@ Creative Commons Namensnennung 4.0 International Lizenz.
 
 /* Besondere Kacheln */
 .tile.overview .content {
-    background-color: #FFFCEB;
+    background-color: #2B3A42;
 }
 
 .tile.overview .content:hover {
-    background-color: #FBF6D5;
+    background-color: #3F5765;
 }
 
 .tile.status-all .content {
-    background-color: #f5f5f5;
+    background-color: #E45E2C;
     font-weight: bold;
 }
 
 .tile.status-all .content:hover {
-    background-color: #e6e6e6;
+    background-color: #3F5765;
 }

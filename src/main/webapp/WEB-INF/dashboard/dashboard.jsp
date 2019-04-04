@@ -34,6 +34,16 @@
         <div class="menuitem">
             <a href="<c:url value="/app/tasks/categories/"/>">Kategorien bearbeiten</a>
         </div>
+        
+        <div class="menuitem">
+            <a href="<c:url value="/app/buchung/new"/>"> Buchung</a>
+        </div>
+        
+        <div class="menuitem">
+            <a href="<c:url value="/app/rueckgabe/new"/>"> Rueckgabeformular</a>
+        </div>
+        
+     
    
     </jsp:attribute>
 

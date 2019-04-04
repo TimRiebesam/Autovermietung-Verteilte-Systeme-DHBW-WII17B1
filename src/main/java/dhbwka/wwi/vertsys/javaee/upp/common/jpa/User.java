@@ -46,9 +46,24 @@ public class User implements Serializable {
     @NotNull(message = "Der Benutzername darf nicht leer sein.")
     private String username;
     
+    private String password1;
+    private String password2;
+    
+    //Weitere Einträge des Users
+    private String vorname;
+    private String nachname;
+    private String email; 
+    private String tel;
+    private String strasse;
+    private String plz;
+    private String ort;
+    
+
+
+    
     public class Password {
         @Size(min = 6, max = 64, message = "Das Passwort muss zwischen sechs und 64 Zeichen lang sein.")
-        public String password = "";
+        public String password = password1;
     }
     @Transient
     private final Password password = new Password();
@@ -72,20 +87,94 @@ public class User implements Serializable {
     public User() {
     }
 
-    public User(String username, String password) {
+    public User(String username, String password, String vorname, String nachname, String email, String tel, String strasse, String plz, String ort) {
         this.username = username;
         this.password.password = password;
-        this.passwordHash = this.hashPassword(password);
-    }
-    //</editor-fold>
+        this.passwordHash = hashPassword(password);
+        this.vorname = vorname;
+        this.nachname = nachname;
+        this.email = email;
+        this.tel = tel;
+        this.strasse = strasse;
+        this.plz = plz;
+        this.ort = ort;
 
+    }
+    
+    //</editor-fold>  
+    
     //<editor-fold defaultstate="collapsed" desc="Setter und Getter">
+
     public String getUsername() {
         return username;
     }
 
-    public void setUsername(String id) {
-        this.username = id;
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public String getVorname() {
+        return vorname;
+    }
+
+    public void setVorname(String vorname) {
+        this.vorname = vorname;
+    }
+
+    public String getNachname() {
+        return nachname;
+    }
+
+    public void setNachname(String nachname) {
+        this.nachname = nachname;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getTel() {
+        return tel;
+    }
+
+    public void setTel(String tel) {
+        this.tel = tel;
+    }
+
+    public String getStrasse() {
+        return strasse;
+    }
+
+    public void setStrasse(String strasse) {
+        this.strasse = strasse;
+    }
+
+    public String getPlz() {
+        return plz;
+    }
+
+    public void setPlz(String plz) {
+        this.plz = plz;
+    }
+
+    public String getOrt() {
+        return ort;
+    }
+
+    public void setOrt(String ort) {
+        this.ort = ort;
+    }
+
+    public String getPasswordHash() {
+        return passwordHash;
+    }
+
+    public void setPasswordHash(String passwordHash) {
+        this.passwordHash = passwordHash;
     }
 
     public List<Task> getTasks() {
@@ -95,8 +184,9 @@ public class User implements Serializable {
     public void setTasks(List<Task> tasks) {
         this.tasks = tasks;
     }
-    //</editor-fold>
+        
 
+    //</editor-fold>
     //<editor-fold defaultstate="collapsed" desc="Passwort setzen und prüfen">
     /**
      * Berechnet der Hash-Wert zu einem Passwort.

@@ -26,5 +26,20 @@ table{
 td{
     min-width: 150pt;
 }
-  
+.div{
+    display: inline-block;
+    width: 30%;
+}
 
+#img{
+    width: 250pt;
+    height: 125pt;
+    padding-bottom: 55pt;
+}
+
+#button{
+    text-align: center;
+    margin-left: 20px;
+    border-radius: 1em;
+    
+}

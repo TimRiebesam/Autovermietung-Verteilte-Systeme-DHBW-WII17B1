@@ -9,33 +9,28 @@
  * Dieser Quellcode ist lizenziert unter einer
  * Creative Commons Namensnennung 4.0 International Lizenz.
  */
-
 package dhbwka.wwi.vertsys.javaee.upp.auto.jpa;
 
-import dhbwka.wwi.vertsys.javaee.upp.common.jpa.User;
 import java.io.Serializable;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
-import javax.persistence.TableGenerator;
 
 /**
  *
  * @author Nicolas
  */
-
 @Entity
-@Table(name="UPP_AUTO")
+@Table(name = "UPP_AUTO")
 public class Auto implements Serializable {
-    
+
     private static final long serialVersionUID = 1L;
-  
+
     @Id
     @GeneratedValue
     private long id;
-    
+
     private String marke;
     private String modell;
     private String groeße;
@@ -43,18 +38,17 @@ public class Auto implements Serializable {
     private String kraftstoff;
     private int anzahl_sitzplaetze;
     private int anzahl_tueren;
-    private double standKM_anfang;
-    private double standKM_ende;
+    private double kmStand;
     private String getriebetyp;
     private double preis;
-    
-    
+    private String bildquelle;
+
     //Konstruktoren
     public Auto() {
-        
+
     }
 
-    public Auto(String marke, String modell, String groeße, String typ, String kraftstoff, int anzahl_sitzplaetze, int anzahl_tueren, double standKM_anfang, double standKM_ende, String getriebetyp, double preis) {
+    public Auto(String marke, String modell, String groeße, String typ, String kraftstoff, int anzahl_sitzplaetze, int anzahl_tueren, String getriebetyp, double kmStand, double preis, String bildquelle) {
         this.marke = marke;
         this.modell = modell;
         this.groeße = groeße;
@@ -62,13 +56,11 @@ public class Auto implements Serializable {
         this.kraftstoff = kraftstoff;
         this.anzahl_sitzplaetze = anzahl_sitzplaetze;
         this.anzahl_tueren = anzahl_tueren;
-        this.standKM_anfang = standKM_anfang;
-        this.standKM_ende = standKM_ende;
         this.getriebetyp = getriebetyp;
         this.preis = preis;
+        this.bildquelle = bildquelle;
+        this.kmStand = kmStand;
     }
-    
-    
 
     public long getId() {
         return id;
@@ -134,28 +126,20 @@ public class Auto implements Serializable {
         this.anzahl_tueren = anzahl_tueren;
     }
 
-    public double getStandKM_anfang() {
-        return standKM_anfang;
-    }
-
-    public void setStandKM_anfang(double standKM_anfang) {
-        this.standKM_anfang = standKM_anfang;
-    }
-
-    public double getStandKM_ende() {
-        return standKM_ende;
-    }
-
-    public void setStandKM_ende(double standKM_ende) {
-        this.standKM_ende = standKM_ende;
-    }
-
     public String getGetriebetyp() {
         return getriebetyp;
     }
 
     public void setGetriebetyp(String getriebetyp) {
         this.getriebetyp = getriebetyp;
+    }
+
+    public double getKmStand() {
+        return kmStand;
+    }
+
+    public void setKmStand(double kmStand) {
+        this.kmStand = kmStand;
     }
 
     public double getPreis() {
@@ -165,4 +149,13 @@ public class Auto implements Serializable {
     public void setPreis(double preis) {
         this.preis = preis;
     }
+
+    public String getBildquelle() {
+        return bildquelle;
+    }
+
+    public void setBildquelle(String bildquelle) {
+        this.bildquelle = bildquelle;
+    }
+
 }//end of class

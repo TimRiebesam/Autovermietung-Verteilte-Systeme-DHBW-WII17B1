@@ -9,6 +9,7 @@
  */
 package dhbwka.wwi.vertsys.javaee.upp.common.web;
 
+import dhbwka.wwi.vertsys.javaee.upp.common.ejb.InitBean;
 import dhbwka.wwi.vertsys.javaee.upp.common.ejb.ValidationBean;
 import dhbwka.wwi.vertsys.javaee.upp.common.ejb.UserBean;
 import dhbwka.wwi.vertsys.javaee.upp.common.jpa.User;
@@ -36,6 +37,9 @@ public class SignUpServlet extends HttpServlet {
     @EJB
     UserBean userBean;
     
+    @EJB
+    InitBean initBean;
+    
     @Override
     public void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -57,9 +61,17 @@ public class SignUpServlet extends HttpServlet {
         String username = request.getParameter("signup_username");
         String password1 = request.getParameter("signup_password1");
         String password2 = request.getParameter("signup_password2");
+        String vorname = request.getParameter("signup_vorname");
+        String nachname = request.getParameter("signup_nachname");
+        String email = request.getParameter("signup_email");
+        String tel = request.getParameter("signup_tel");
+        String strasse = request.getParameter("signup_strasse");
+        String plz = request.getParameter("signup_plz");
+        String ort = request.getParameter("signup_ort");
+        
         
         // Eingaben prüfen
-        User user = new User(username, password1);
+        User user = new User(username, password1 , vorname, nachname, email, tel, strasse, plz, ort);
         List<String> errors = this.validationBean.validate(user);
         this.validationBean.validate(user.getPassword(), errors);
         
@@ -70,7 +82,7 @@ public class SignUpServlet extends HttpServlet {
         // Neuen Benutzer anlegen
         if (errors.isEmpty()) {
             try {
-                this.userBean.signup(username, password1);
+                this.userBean.signup(username, password1, vorname, nachname, email, tel, strasse, plz, ort);
             } catch (UserBean.UserAlreadyExistsException ex) {
                 errors.add(ex.getMessage());
             }
@@ -80,6 +92,9 @@ public class SignUpServlet extends HttpServlet {
         if (errors.isEmpty()) {
             // Keine Fehler: Startseite aufrufen
             request.login(username, password1);
+            
+            initBean.initializeDatabase();
+            
             response.sendRedirect(WebUtils.appUrl(request, "/app/dashboard/"));
         } else {
             // Fehler: Formuler erneut anzeigen

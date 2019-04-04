@@ -24,7 +24,7 @@ import javax.persistence.PersistenceContext;
  * @author Nicolas
  */
 @Stateless
-@RolesAllowed("app_user")
+@RolesAllowed("app-user")
 
 public class AutoBean extends EntityBean<Auto, Long> {
     
