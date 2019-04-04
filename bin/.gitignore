@@ -3,4 +3,4 @@
 /node_modules/**
 /target/**
 /target/
-/src/
+/bin/
