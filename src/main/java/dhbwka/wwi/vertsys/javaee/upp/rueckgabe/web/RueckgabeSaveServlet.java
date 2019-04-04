@@ -14,6 +14,7 @@ package dhbwka.wwi.vertsys.javaee.upp.rueckgabe.web;
 import dhbwka.wwi.vertsys.javaee.upp.buchung.ejb.BuchungBean;
 import dhbwka.wwi.vertsys.javaee.upp.buchung.jpa.Buchung;
 import dhbwka.wwi.vertsys.javaee.upp.common.ejb.ValidationBean;
+import dhbwka.wwi.vertsys.javaee.upp.common.web.FormValues;
 import dhbwka.wwi.vertsys.javaee.upp.rueckgabe.ejb.RueckgabeBean;
 import dhbwka.wwi.vertsys.javaee.upp.rueckgabe.jpa.Rueckgabe;
 import java.io.IOException;
@@ -94,11 +95,14 @@ public class RueckgabeSaveServlet extends HttpServlet{
             this.validationBean.validate(rueckgabe, errors);
         }
         
-        if(!errors.isEmpty()){
+        if(!errors.isEmpty()){            
+            FormValues formValues = new FormValues();
+            formValues.setValues(request.getParameterMap());
+            formValues.setErrors(errors);
+
             HttpSession session = request.getSession();
-            session.setAttribute("rueckgabe", rueckgabe);
-            session.setAttribute("errors", errors);
-            
+            session.setAttribute("task_form", formValues);
+
             response.sendRedirect(request.getRequestURI());
         }
         

@@ -39,12 +39,12 @@
 
     <jsp:attribute name="content">
 
-        <div class="column">
-            <div id="boxDetail">
-                <label id="labelDetail">Details: </label>
-            </div>
 
-            <div class="div">
+        <div id="boxDetail">
+            <label id="labelDetail">Details: </label>
+        </div>
+        <div class="flex-container">
+            <div class="flex-item">
                 <table>
                     <tr>
                         <td>Marke: </td>    
@@ -93,20 +93,23 @@
                 </table>
             </div>
 
-            <div class="div"> 
-
+            <div class="flex-item"> 
                 <img id="img" src="${detailedAuto.getBildquelle()}" alt="Bild vom Karch">
-
             </div>
 
 
-            <form method="POST" action="details?id=${detailedAuto.getId()}">
-                <%-- CSRF-Token --%>
-                <input type="hidden" name="csrf_token" value="${csrf_token}">
-                <button id="button" type="submit" name="action" >
-                    Auto buchen
-                </button>
-            </form>
+        </div>
+
+
+
+
+        <form method="POST" action="details?id=${detailedAuto.getId()}">
+            <%-- CSRF-Token --%>
+            <input type="hidden" name="csrf_token" value="${csrf_token}">
+            <button id="button" type="submit" name="action" >
+                Auto buchen
+            </button>
+        </form>
 
 
 
@@ -117,5 +120,7 @@
 
 
 
-        </jsp:attribute>
-    </template:base>
+
+
+    </jsp:attribute>
+</template:base>

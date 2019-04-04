@@ -41,6 +41,27 @@ body {
 
 button {
     margin-top: 10pt;
+    border: 0;
+    background-color: #3F5765;
+    color: #EFEFEF;
+    border-radius: 5pt;
+    height: 26pt;
+    font-size: 14pt;
+    cursor: pointer;
+    transition: .3s;
+}
+
+button:hover{
+    background-color: #2B3A42;
+    transition: .3s;
+}
+
+textfield{
+    background-color: #EFEFEF;
+}
+
+textarea {
+    background-color: #EFEFEF;
 }
 
 @media (max-width: 768px) {
