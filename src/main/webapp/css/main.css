@@ -39,6 +39,10 @@ body {
     
 }
 
+button {
+    margin-top: 10pt;
+}
+
 @media (max-width: 768px) {
     html {
         font-size: 12pt;
