@@ -9,6 +9,7 @@
  */
 package dhbwka.wwi.vertsys.javaee.upp.common.web;
 
+import dhbwka.wwi.vertsys.javaee.upp.common.ejb.InitBean;
 import dhbwka.wwi.vertsys.javaee.upp.common.ejb.ValidationBean;
 import dhbwka.wwi.vertsys.javaee.upp.common.ejb.UserBean;
 import dhbwka.wwi.vertsys.javaee.upp.common.jpa.User;
@@ -35,6 +36,9 @@ public class SignUpServlet extends HttpServlet {
             
     @EJB
     UserBean userBean;
+    
+    @EJB
+    InitBean initBean;
     
     @Override
     public void doGet(HttpServletRequest request, HttpServletResponse response)
@@ -88,6 +92,9 @@ public class SignUpServlet extends HttpServlet {
         if (errors.isEmpty()) {
             // Keine Fehler: Startseite aufrufen
             request.login(username, password1);
+            
+            initBean.initializeDatabase();
+            
             response.sendRedirect(WebUtils.appUrl(request, "/app/dashboard/"));
         } else {
             // Fehler: Formuler erneut anzeigen
