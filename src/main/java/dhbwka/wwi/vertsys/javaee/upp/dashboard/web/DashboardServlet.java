@@ -39,7 +39,7 @@ public class DashboardServlet extends HttpServlet {
     public void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-        request.getSession().setAttribute("kunde", userBean.getCurrentUser());
+        request.getSession().setAttribute("user", userBean.getCurrentUser());
         
         // Dashboard-Rubriken und Kacheln erzeugen und im Request Context ablegen
         List<DashboardSection> sections = new ArrayList<>();

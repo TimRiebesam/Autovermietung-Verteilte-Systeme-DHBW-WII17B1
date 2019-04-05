@@ -43,11 +43,11 @@
                 
                 <%-- Kunde ---%>
                 <label for="kunde">Kunden-ID:<span class="required"></span></label>
-                <input type="text" name="kunde" value="${param.kunde}"/>
+                <input type="text" name="kunde" value="${kunde}"/>
                                 
                 <%-- Fahrzeug ---%>
                 <label for="fahrzeug">Fahrzeug:<span class="required"></span></label>
-                <input type="text" name="fahrzeug" value="${param.fahrzeug}"/>
+                <input type="text" name="fahrzeug" value="${fahrzeug}"/>
                 
                 <%-- Start Datum ---%>
                 <label for="startdatum">Start-Datum:<span class="required"></span></label>
