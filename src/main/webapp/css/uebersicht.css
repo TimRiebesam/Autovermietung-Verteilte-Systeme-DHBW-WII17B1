@@ -1,0 +1,41 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 02.04.2019, 13:38:22
+    Author     : rapht
+*/
+
+#button1 {
+  float: left;
+  border: 1px solid green;
+}
+
+#button1 {font-size: 24px;}
+
+#button1 {border-radius: 12px;}
+#button1 {
+  -webkit-transition-duration: 0.4s;
+  transition-duration: 0.4s;
+}
+#button1:hover {
+  background-color: #4CAF50; /* Green */
+  color: white;
+}
+#button1 {
+  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+}
+
+h2{
+    color: black;
+}
+#button1{
+    padding: 10px;
+    margin: 10px;
+}
+.flex-container {
+  display: flex;
+  flex-direction: column;
+}
