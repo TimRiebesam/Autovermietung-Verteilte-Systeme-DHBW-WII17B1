@@ -9,6 +9,7 @@
  */
 package dhbwka.wwi.vertsys.javaee.upp.dashboard.web;
 
+import dhbwka.wwi.vertsys.javaee.upp.common.ejb.UserBean;
 import dhbwka.wwi.vertsys.javaee.upp.dashboard.ejb.DashboardContentProvider;
 import dhbwka.wwi.vertsys.javaee.upp.dashboard.ejb.DashboardSection;
 import java.io.IOException;
@@ -30,11 +31,16 @@ public class DashboardServlet extends HttpServlet {
     // Kacheln für Aufgaben
     @EJB(beanName = "tasks")
     DashboardContentProvider taskContent;
+    
+    @EJB
+    UserBean userBean;
 
     @Override
     public void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
+        request.getSession().setAttribute("kunde", userBean.getCurrentUser());
+        
         // Dashboard-Rubriken und Kacheln erzeugen und im Request Context ablegen
         List<DashboardSection> sections = new ArrayList<>();
         request.setAttribute("sections", sections);
