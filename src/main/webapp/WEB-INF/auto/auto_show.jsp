@@ -94,7 +94,7 @@
             </div>
 
             <div class="flex-item"> 
-                <img id="img" src="${detailedAuto.getBildquelle()}" alt="Bild vom Karch">
+                <img id="img" src="${detailedAuto.getBildquelle()}" alt="Bild vom Auto">
             </div>
 
 
