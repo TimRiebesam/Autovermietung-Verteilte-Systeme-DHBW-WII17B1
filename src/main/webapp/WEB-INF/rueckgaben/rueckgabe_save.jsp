@@ -62,8 +62,8 @@
                     <input type="checkbox" id="schadenEntstanden" name="schadenEntstanden" onclick="handleSchadensfall()">
                     <span class="checkmark"></span>
                 </label>
-                <label for="schadensmeldung" id="schadensmeldungLabel">Schadensmeldung:</label>
-                <textarea name="schadensmeldung" id="schadensmeldung" placeholder="Beschreiben Sie hier Ihren Schaden. Wir werden uns anschließend in kürze bei Ihnen melden.">
+                <label for="schadensmeldung" id="schadensmeldungLabel" style="display: none">Schadensmeldung:</label>
+                <textarea name="schadensmeldung" id="schadensmeldung" disabled="true" style="display: none" placeholder="Beschreiben Sie hier Ihren Schaden. Wir werden uns anschließend in kürze bei Ihnen melden.">
                     <c:out value="${task_form.values['schadensmeldung'][0]}"/>
                 </textarea>
                 
