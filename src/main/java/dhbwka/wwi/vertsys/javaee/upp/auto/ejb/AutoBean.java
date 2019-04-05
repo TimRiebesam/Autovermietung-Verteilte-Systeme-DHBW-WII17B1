@@ -44,6 +44,11 @@ public class AutoBean extends EntityBean<Auto, Long> {
         return em.find(Auto.class, id);
     }
     
+    public List<Auto> getAutoByTyp (String typ){
+        return em.createQuery("SELECT r FROM Auto r"
+        + " WHERE r.typ LIKE :typ").setParameter("typ", typ).getResultList();
+    }
+    
     public Auto saveAuto(Auto auto){
         em.persist(auto);
         return em.merge(auto);
