@@ -24,68 +24,38 @@
 
     <jsp:attribute name="menu">
         <div class="menuitem">
-            <a href="<c:url value="/app/tasks/list/"/>">Liste</a>
+            <a href="<c:url value="/app/zeitraum"/>">Auto reservieren</a>
         </div>
 
         <div class="menuitem">
-            <a href="<c:url value="/app/tasks/task/new/"/>">Aufgabe anlegen</a>
+            <a href="<c:url value="/app/rueckgabe/new"/>">Auto zurückgeben</a>
         </div>
 
-        <div class="menuitem">
-            <a href="<c:url value="/app/tasks/categories/"/>">Kategorien bearbeiten</a>
-        </div>
-        
-        <div class="menuitem">
-            <a href="<c:url value="/app/buchung/new"/>"> Buchung</a>
-        </div>
-        
-        <div class="menuitem">
-            <a href="<c:url value="/app/rueckgabe/new"/>"> Rueckgabeformular</a>
-        </div>
-        
-     
-   
     </jsp:attribute>
 
     <jsp:attribute name="content">
-        <c:choose>
-            <c:when test="${empty sections}">
-                <p>
-                    Es wurden keine Dashboard-Kacheln gefunden. 🙈
-                </p>
-            </c:when>
-            <c:otherwise>
-                <jsp:useBean id="utils" class="dhbwka.wwi.vertsys.javaee.upp.common.web.WebUtils"/>
+        
+        <h2>Reservieren Sie sich noch heute Ihren Taumwagen!</h2>
+        
+        <div class="tile overview">
+            <a href="<c:url value="/app/zeitraum"/>">
+                <div class="content">
+                    <div class="label">
+                        Auto reservieren
+                    </div>
+                </div>
+            </a>
+         </div>
 
-                <c:forEach items="${sections}" var="section">
-                    <h2>
-                        <c:out value="${section.label}"/>
-                    </h2>
-
-                    <c:forEach items="${section.tiles}" var="tile">
-                        <div class="tile ${tile.cssClass}">
-                            <a href="<c:url value="${tile.href}"/>">
-                                <div class="content">
-                                    <div class="label">
-                                        <c:out value="${tile.label}"/>
-                                    </div>
-                                    <div class="icon icon-${tile.icon}"></div>
-                                    <div class="amount">
-                                        <c:choose>
-                                            <c:when test="${tile.showDecimals}">
-                                                <c:out value="${utils.formatDouble(tile.amount)}"/>
-                                            </c:when>
-                                            <c:otherwise>
-                                                <c:out value="${utils.formatInteger(tile.amount)}"/>
-                                            </c:otherwise>
-                                        </c:choose>
-                                    </div>
-                                </div>
-                            </a>
-                        </div>
-                    </c:forEach>
-                </c:forEach>
-            </c:otherwise>
-        </c:choose>
+        <div class="tile overview">
+            <a href="<c:url value="/app/rueckgabe/new"/>">
+                <div class="content">
+                    <div class="label">
+                        Auto zurückgeben
+                    </div>
+                </div>
+            </a>
+        </div>
+        
     </jsp:attribute>
 </template:base>
