@@ -25,25 +25,51 @@
         </div>
 
         <div class="menuitem">
-            <a href="<c:url value="/app/tasks/task/new/"/>">Aufgabe anlegen</a>
+            <a href="<c:url value="/app/zeitraum"/>">Auto reservieren</a>
         </div>
 
         <div class="menuitem">
-            <a href="<c:url value="/app/tasks/categories/"/>">Kategorien bearbeiten</a>
+            <a href="<c:url value="/app/rueckgabe/new"/>">Weiteres Auto zurückgeben</a>
         </div>
     </jsp:attribute>
 
     <jsp:attribute name="content">
         <div class="column">
-            <label>Ihre Rueckgabe war erfolgreich und wurde in unserem System gespeichert!</label>
-            Informationen zu Ihrer Rückgabe:<br>
-            Buchungs-ID: <c:out value="${rueckgabe.buchung.id}"></c:out><br>
-            Abstellort: <c:out value="${rueckgabe.rueckgabeOrt}"></c:out><br>
-            Zufriedenheit Fahrzeug: <c:out value="${rueckgabe.fahrzeugZufriedenheit}"></c:out><br>
-            Zufriedenheit Gesamt: <c:out value="${rueckgabe.gesamtZufriedenheit}"></c:out><br>
-            Schadensmeldung: <c:out value="${rueckgabe.schadensMeldung}"></c:out><br>
-            Ihre Rückmeldung für uns: <c:out value="${rueckgabe.kommentar}"></c:out><br>
-            Datum der Rückgabe: <c:out value="${rueckgabe.rueckgabeDatum}"></c:out><br>
+            <h3>Ihre Rueckgabe war erfolgreich und wurde in unserem System gespeichert!</h3>
+            <table style="font-size: 16pt;">
+                <th>
+                <td>Informationen zu Ihrer Rückgabe:</td>
+                </th>
+                <tr>
+                    <td style="min-width: 120pt;">Buchungs-ID:</td>
+                    <td><c:out value="${rueckgabe.buchung.id}"></c:out></td>
+                </tr>
+                <tr>
+                    <td>Abstellort: </td>
+                    <td><c:out value="${rueckgabe.rueckgabeOrt}"></c:out></td>
+                </tr>
+                <tr>
+                    <td>Zufriedenheit Fahrzeug: </td>
+                    <td><c:out value="${rueckgabe.fahrzeugZufriedenheit}"></c:out></td>
+                </tr>
+                <tr>
+                    <td> Zufriedenheit Gesamt:</td>
+                    <td><c:out value="${rueckgabe.gesamtZufriedenheit}"></c:out></td>
+                </tr>
+                <tr>
+                    <td>Schadensmeldung:</td>
+                    <td><c:out value="${rueckgabe.schadensMeldung}"></c:out></td>
+                </tr>
+                <tr>
+                    <td>Ihre Rückmeldung für uns:</td>
+                    <td><c:out value="${rueckgabe.kommentar}"></c:out></td>
+                </tr>
+                <tr>
+                    <td>Datum der Rückgabe:</td>
+                    <td><c:out value="${rueckgabe.rueckgabeDatum}"></c:out></td>
+                </tr>
+                
+            </table>
         </div>
     </jsp:attribute>
 </template:base>
