@@ -12,6 +12,7 @@
 
 package dhbwka.wwi.vertsys.javaee.upp.rueckgabe.jpa;
 
+import dhbwka.wwi.vertsys.javaee.upp.buchung.ejb.BuchungBean;
 import dhbwka.wwi.vertsys.javaee.upp.buchung.jpa.Buchung;
 import java.io.Serializable;
 import java.util.Date;
@@ -62,6 +63,7 @@ public class Rueckgabe implements Serializable{
         
     }
     
+    //Konstruktor komplett
     public Rueckgabe(Buchung buchung, String schadensMeldung, String rueckgabeOrt, int gesamtZufriedenheit, int fahrzeugZufriedenheit, String kommentar){
         this.schadensMeldung = schadensMeldung;
         this.rueckgabeDatum = new Date();
@@ -72,6 +74,7 @@ public class Rueckgabe implements Serializable{
         this.buchung = buchung;
     }
     
+    //Konstruktor Buchung add later
     public Rueckgabe(String schadensMeldung, String rueckgabeOrt, int gesamtZufriedenheit, int fahrzeugZufriedenheit, String kommentar){
         this.schadensMeldung = schadensMeldung;
         this.rueckgabeDatum = new Date();
