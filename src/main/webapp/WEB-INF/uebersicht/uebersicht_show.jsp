@@ -39,6 +39,11 @@
             <a href="#">
                 <img class="img-responsive img-rounded" src="" alt="">
             </a>
+                    <a href="/upp/app/zeitraum">
+                       <button id="button2" class="icon-pencil" type="submit" name="action" value="save">
+                           <td>zurück</td> 
+                       </button>
+                   </a>
                       
             <h2>
                 Welcher Typ soll das Fahrzeug sein?

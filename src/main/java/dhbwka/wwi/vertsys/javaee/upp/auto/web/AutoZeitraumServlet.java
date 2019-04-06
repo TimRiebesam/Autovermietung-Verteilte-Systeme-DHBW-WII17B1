@@ -45,21 +45,21 @@ public class AutoZeitraumServlet extends HttpServlet {
         String endDate = request.getParameter("bis");
 
         System.out.println(beginDate);
+        System.out.println(endDate);
 
         try {
             Date date1 = new SimpleDateFormat("yyyy-MM-dd").parse(beginDate);
             Date date2 = new SimpleDateFormat("yyyy-MM-dd").parse(endDate);
-            if (date1 != null && date2 != null && date1.compareTo(date2) == 1) {
+            if (date1 != null && date2 != null && (date2.compareTo(date1) == 1 || date2.compareTo(date1) == 0)) {
                 request.getSession().setAttribute("vonDatum", date1);
                 request.getSession().setAttribute("bisDatum", date2);
+                response.sendRedirect(WebUtils.appUrl(request, "/app/uebersicht"));
             }
             else{
-                
+                response.sendRedirect(WebUtils.appUrl(request, "/app/zeitraum"));
             }
         } catch (ParseException ex) {
             Logger.getLogger(AutoZeitraumServlet.class.getName()).log(Level.SEVERE, null, ex);
         }
-
-        response.sendRedirect(WebUtils.appUrl(request, "/app/uebersicht"));
-    }
+ }
 }

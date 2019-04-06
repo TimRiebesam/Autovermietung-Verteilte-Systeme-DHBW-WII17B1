@@ -40,9 +40,7 @@ public class AutoUebersichtServlet extends HttpServlet{
     @Override
     public void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
-        System.out.println(request.getSession().getAttribute("vonDatum"));
-        
+              
         //Liest den Typ der angefragten Autos aus der URL
         String typ = request.getParameter("typ");
         if(typ == null){
@@ -57,35 +55,5 @@ public class AutoUebersichtServlet extends HttpServlet{
         // Anfrage an die JSP weiterleiten
         request.getRequestDispatcher("/WEB-INF/uebersicht/uebersicht_show.jsp").forward(request, response);
     }
-    /*@Override
-    public void doPost(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException{
-        List<String> errors = new ArrayList<>();
-        try{
-        String beginDate = request.getParameter("beginDate");
-        Date date1 = new SimpleDateFormat("dd-MM-yyyy").parse(beginDate);
-        String endDate = request.getParameter("endDate");
-        Date date2 = new SimpleDateFormat("dd-MM-yyyy").parse(endDate);
-        System.out.println("Test1");
-        if(date1 != null && date2 != null && date1.compareTo(date2) == 1 ){
-            System.out.println("Test2");
-            request.getSession().setAttribute("beginDate", beginDate);
-            request.getSession().setAttribute("endDate", endDate);
-            
-            request.setAttribute("beginDate", beginDate);
-            request.setAttribute("endDate", endDate);
-            
-            request.getRequestDispatcher("/WEB-INF/uebersicht/uebersichtTyp_show.jsp").forward(request, response);
-        }
-        
-        request.setAttribute("endDate" , date1 );
-        request.setAttribute("beginDate", date2 );
-        
-        
-        }catch(Exception e){
-                
-        }
-        
-    }*/
     
 }

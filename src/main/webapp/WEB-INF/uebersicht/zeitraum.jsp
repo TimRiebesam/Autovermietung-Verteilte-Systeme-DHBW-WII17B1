@@ -35,6 +35,7 @@
 
         <jsp:attribute name="content">
             <form method="POST">
+                <h2>Wählen Sie den Zeitraum, an dem Sie das Fahrzeug wollen</h2>
                 <input type="hidden" name="csrf_token" value="${csrf_token}">
 
                 <input type="date" id="von" name="von"/>
