@@ -62,6 +62,16 @@ public class Rueckgabe implements Serializable{
         
     }
     
+    public Rueckgabe(Buchung buchung, String schadensMeldung, String rueckgabeOrt, int gesamtZufriedenheit, int fahrzeugZufriedenheit, String kommentar){
+        this.schadensMeldung = schadensMeldung;
+        this.rueckgabeDatum = new Date();
+        this.rueckgabeOrt = rueckgabeOrt;
+        this.gesamtZufriedenheit = gesamtZufriedenheit;
+        this.fahrzeugZufriedenheit = fahrzeugZufriedenheit;
+        this.kommentar = kommentar;
+        this.buchung = buchung;
+    }
+    
     public Rueckgabe(String schadensMeldung, String rueckgabeOrt, int gesamtZufriedenheit, int fahrzeugZufriedenheit, String kommentar){
         this.schadensMeldung = schadensMeldung;
         this.rueckgabeDatum = new Date();
