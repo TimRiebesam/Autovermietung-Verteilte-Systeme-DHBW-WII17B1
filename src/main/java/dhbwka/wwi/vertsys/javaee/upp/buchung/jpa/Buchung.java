@@ -41,7 +41,7 @@ public class Buchung implements Serializable{
     
         @OneToOne
     @NotNull(message = "Zu einer Buchung wird ein Kunde benötigt.")
-    private Kunde kunde;
+    private User user;
     
     @OneToOne
     @NotNull(message = "Zu einer Buchung wird ein Auto benötigt.")
@@ -66,12 +66,14 @@ public class Buchung implements Serializable{
         
     }
     
-    public Buchung(String buchungNr, Date startDatum, Date endDatum, int buchungPreis, String buchungAbholort){
+    public Buchung(Auto auto, User user, String buchungNr, Date startDatum, Date endDatum, int buchungPreis, String buchungAbholort){
         this.buchungNr = buchungNr;
         this.startDatum = new Date();
         this.endDatum = new Date();
         this.buchungPreis = buchungPreis;
         this.buchungAbholort = buchungAbholort;
+        this.auto = auto;
+        this.user = user;
     }
 
     public long getId() {
