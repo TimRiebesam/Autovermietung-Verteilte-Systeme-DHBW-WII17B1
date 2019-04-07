@@ -67,10 +67,10 @@ public class BuchungSaveServlet extends HttpServlet {
          request.setAttribute("preis", preis);
         
         // Datum
-        Date vonDate = (Date) request.getSession().getAttribute("vonDatum");
-        request.setAttribute("startdatum", vonDate);
-        Date bisDate = (Date) request.getSession().getAttribute("bisDatum");
-        request.setAttribute("enddatum", bisDate);
+        String date1 = (String) request.getSession().getAttribute("Datum1");
+        request.setAttribute("startdatum", date1);
+        String date2 = (String) request.getSession().getAttribute("Datum2");
+        request.setAttribute("enddatum", date2);
         
        
         
@@ -91,21 +91,36 @@ public class BuchungSaveServlet extends HttpServlet {
         
         
         //Datenbank
-        Auto bookedAuto = (Auto) request.getSession().getAttribute("bookedAuto");
-       User user = (User) request.getSession().getAttribute("user");
-       Date startDatum = (Date) request.getSession().getAttribute("vonDatum");
-       Date endDatum = (Date) request.getSession().getAttribute("bisDatum");    
+
+        try {
+            String s_date1 = (String) request.getSession().getAttribute("Datum1");
+            String s_date2 = (String) request.getSession().getAttribute("Datum2");
+            Date startDatum;
+            Date endDatum;
+            Auto bookedAuto = (Auto) request.getSession().getAttribute("bookedAuto");
+            User user = (User) request.getSession().getAttribute("user");
+            startDatum = new SimpleDateFormat("yyyy-MM-dd").parse(s_date1);
+            endDatum = new SimpleDateFormat("yyyy-MM-dd").parse(s_date2);
+            System.out.println(endDatum);
+            double buchungPreis = bookedAuto.getPreis();
+            String d_abholort = request.getParameter("abholort");
+        
+            Buchung buchung = new Buchung(bookedAuto, user, startDatum, endDatum, buchungPreis, d_abholort);
+            buchungBean.saveNew(buchung);
+        } catch (ParseException ex) {
+            Logger.getLogger(BuchungSaveServlet.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
        //double diff = endDatum.getTime() - startDatum.getTime(); 
        //double diffDays = diff / (24 * 60 * 60 * 1000);
        //double buchungPreis = diffDays * bookedAuto.getPreis();
-       double buchungPreis = bookedAuto.getPreis();
-       String d_abholort = request.getParameter("abholort");
-        Buchung buchung = new Buchung(bookedAuto, user, startDatum, endDatum, buchungPreis, d_abholort);
-        buchungBean.saveNew(buchung);
+
         
  
         //Email
-        String buchungsId = request.getParameter("buchungsId");
+        String buchungsId = "noch leer  ";
+        User user = (User) request.getSession().getAttribute("user");
+         Auto bookedAuto = (Auto) request.getSession().getAttribute("bookedAuto");
        String e_kunde = user.getVorname() + " " + user.getNachname();
        String e_email = user.getEmail();
         String e_fahrzeug = bookedAuto.getMarke()+ " " +bookedAuto.getModell();
