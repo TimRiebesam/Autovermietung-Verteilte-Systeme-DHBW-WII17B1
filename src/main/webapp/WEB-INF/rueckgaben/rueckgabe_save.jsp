@@ -42,7 +42,14 @@
                 <label for="buchungsId">Buchungs ID:
                     <span class="required">*</span>
                 </label>
-                <input type="text" name="buchungsId" value="${task_form.values['buchungsId'][0]}" p laceholder="Buchungs-ID" required/>
+                <c:choose>
+                    <c:when test="${buchungsId != null}">
+                        <input type="text" name="buchungsId" value="${buchungsId}" disabled="true" required/>
+                    </c:when>
+                    <c:otherwise>
+                        <input type="text" name="buchungsId" value="${task_form.values['buchungsId'][0]}" p laceholder="Buchungs-ID" required/>
+                    </c:otherwise>
+                </c:choose>
                 
                 <label for="abstellort">Abstellort:
                     <span class="required">*</span>

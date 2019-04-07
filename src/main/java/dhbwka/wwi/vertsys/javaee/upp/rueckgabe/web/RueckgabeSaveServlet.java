@@ -48,6 +48,11 @@ public class RueckgabeSaveServlet extends HttpServlet{
     public void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         
+        String buchungsId = request.getParameter("id");
+        if(buchungsId != null){
+            request.getSession().setAttribute("buchungsId", buchungsId);
+        }
+        
         // Anfrage an die JSP weiterleiten
         request.getRequestDispatcher("/WEB-INF/rueckgaben/rueckgabe_save.jsp").forward(request, response);
     }
@@ -57,10 +62,11 @@ public class RueckgabeSaveServlet extends HttpServlet{
             throws ServletException, IOException {
         
         List<String> errors = new ArrayList<>();
-        
-        //Mögliche Buchungs-IDs für Tests: 250 / 251
-        
-        String buchungsId = request.getParameter("buchungsId");
+                
+        String buchungsId = (String)request.getSession().getAttribute("buchungsId");
+        if(request.getParameter("buchungsId") != null){
+            buchungsId = request.getParameter("buchungsId");
+        }
         String abstellort = request.getParameter("abstellort");
         String schadensmeldung = request.getParameter("schadensmeldung");
         String fahrzeugZufriedenheit = request.getParameter("fahrzeugZufriedenheit");

@@ -1,4 +1,4 @@
-/*
+﻿/*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
@@ -25,6 +25,10 @@ public class AutovermietungRestApi extends Application{
         // Hier für jede Webservice-Klasse eine Zeile hinzufügen
         resources.add(RueckgabeResource.class);
 
+        resources.add(UserResource.class);
+
+        resources.add(AutoResource.class);
+        resources.add(BuchungResource.class);
         return resources;
     }
     
