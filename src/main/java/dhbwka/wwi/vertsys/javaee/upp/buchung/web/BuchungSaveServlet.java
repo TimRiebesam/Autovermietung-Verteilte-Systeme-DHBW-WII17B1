@@ -5,7 +5,8 @@
  */
 package dhbwka.wwi.vertsys.javaee.upp.buchung.web;
 
-
+import dhbwka.wwi.vertsys.javaee.upp.auto.ejb.AutoBean;
+import dhbwka.wwi.vertsys.javaee.upp.auto.jpa.Auto;
 import java.util.Properties;
 import javax.mail.Message;
 import javax.mail.MessagingException;
@@ -16,6 +17,8 @@ import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 import dhbwka.wwi.vertsys.javaee.upp.buchung.ejb.BuchungBean;
 import dhbwka.wwi.vertsys.javaee.upp.buchung.jpa.Buchung;
+import dhbwka.wwi.vertsys.javaee.upp.common.jpa.User;
+import dhbwka.wwi.vertsys.javaee.upp.kunde.jpa.Kunde;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Date;
@@ -44,6 +47,17 @@ public class BuchungSaveServlet extends HttpServlet {
             throws ServletException, IOException {
         
         String username = request.getParameter("signup_username");
+        
+        //Kunde Session ID
+        User user = (User) request.getSession().getAttribute("user");
+       String kunde = user.getVorname();
+       request.setAttribute("kunde", kunde);
+        
+        //Auto Session ID
+        Auto bookedAuto = (Auto) request.getSession().getAttribute("bookedAuto");
+        String fahrzeug = bookedAuto.getMarke()+bookedAuto.getModell();
+        request.setAttribute("fahrzeug", fahrzeug);
+        System.out.println(bookedAuto.getMarke()+bookedAuto.getModell());
 
         // Anfrage an die JSP weiterleiten
         request.getRequestDispatcher("/WEB-INF/buchung/buchung.jsp").forward(request, response);
