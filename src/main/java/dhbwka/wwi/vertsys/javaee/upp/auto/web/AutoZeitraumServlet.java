@@ -43,6 +43,7 @@ public class AutoZeitraumServlet extends HttpServlet {
 
         String beginDate = request.getParameter("von");
         String endDate = request.getParameter("bis");
+        Date today = new Date();
 
         System.out.println(beginDate);
         System.out.println(endDate);
@@ -50,7 +51,9 @@ public class AutoZeitraumServlet extends HttpServlet {
         try {
             Date date1 = new SimpleDateFormat("yyyy-MM-dd").parse(beginDate);
             Date date2 = new SimpleDateFormat("yyyy-MM-dd").parse(endDate);
-            if (date1 != null && date2 != null && (date2.compareTo(date1) == 1 || date2.compareTo(date1) == 0)) {
+            System.out.println(date1);
+            System.out.println(date2);
+            if (date1 != null && date2 != null && (date2.compareTo(date1) == 1 || date2.compareTo(date1) == 0) && (date1.compareTo(today)==1) && beginDate != null && endDate != null){
                 request.getSession().setAttribute("Datum1", beginDate);
                 request.getSession().setAttribute("Datum2", endDate);
                 response.sendRedirect(WebUtils.appUrl(request, "/app/uebersicht"));
