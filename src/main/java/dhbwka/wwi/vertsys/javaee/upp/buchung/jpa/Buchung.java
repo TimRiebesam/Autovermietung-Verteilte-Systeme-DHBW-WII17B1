@@ -47,8 +47,6 @@ public class Buchung implements Serializable{
     @NotNull(message = "Zu einer Buchung wird ein Auto benötigt.")
     private Auto auto;
     
-    @Lob
-    
     private Date startDatum;
     
     private Date endDatum;
