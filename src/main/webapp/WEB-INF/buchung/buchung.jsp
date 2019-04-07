@@ -16,16 +16,14 @@
 
     <jsp:attribute name="menu">
         <div class="menuitem">
-            <a href="<c:url value="/app/dashboard/"/>">Dashboard</a>
+            <a href="<c:url value="/app/zeitraum"/>">Auto reservieren</a>
         </div>
 
         <div class="menuitem">
-            <a href="<c:url value="/app/tasks/task/new/"/>">Aufgabe anlegen</a>
+            <a href="<c:url value="/app/rueckgabe/new"/>">Auto zurückgeben</a>
         </div>
 
-        <div class="menuitem">
-            <a href="<c:url value="/app/tasks/categories/"/>">Kategorien bearbeiten</a>
-        </div>
+
     </jsp:attribute>
 
     <jsp:attribute name="content">
@@ -36,34 +34,35 @@
             <div class="column">
                 <%-- CSRF-Token --%>
                 <input type="hidden" name="csrf_token" value="${csrf_token}">
-                
-                <%-- Buchungs ID --%>
-                <label for="buchungsId">Buchungs-ID:<span class="required"></span></label>
-                <input type="text" name="buchungsId" value="${param.buchungsId}"/>
-                
+                                
                 <%-- Kunde ---%>
-                <label for="kunde">Kunden-ID:<span class="required"></span></label>
-                <input type="text" name="kunde" value="${kunde}"/>
+                <label for="kunde">Kunde:<span class="required"></span></label>
+                <input type="text" disabled="true" name="kunde" value="${kunde}"/>
                                 
                 <%-- Fahrzeug ---%>
                 <label for="fahrzeug">Fahrzeug:<span class="required"></span></label>
-                <input type="text" name="fahrzeug" value="${fahrzeug}"/>
+                <input type="text" disabled="true" name="fahrzeug" value="${fahrzeug}"/>
                 
                 <%-- Start Datum ---%>
                 <label for="startdatum">Start-Datum:<span class="required"></span></label>
-                <input type="text" name="startdatum" value="${param.startdatum}"/>
+                <input type="text" disabled="true" name="startdatum" value="${startdatum}"/>
                 
                 <%-- End-Datum ---%>
                 <label for="enddatum">End-Datum:<span class="required"></span></label>
-                <input type="text" name="enddatum" value="${param.enddatum}"/>
+                <input type="text" disabled="true" name="enddatum" value="${enddatum}"/>
                 
                 <%-- Preis ---%>
                 <label for="preis">Preis:<span class="required"></span></label>
-                <input type="text" name="preis" value="${param.preis}"/>
+                <input type="text" disabled="true" name="preis" value="${preis}"/>
                 
                 <%-- Abholort---%>
-                <label for="abholort">Abholort:<span class="required"></span></label>
-                <input type="text" name="abholort" value="${param.abholort}"/>
+                <label for="abholort">Abholort:<span class="required">*</span></label>
+                <select name="abholort" value="">
+                    <option value="Karlsruhe Nord" ${param.kanord == 'Karlsruhe Nord' ? 'selected' : ''}>Karlsruhe Nord</option>
+                    <option value="Karlsruhe Ost" ${param.kaost == 'Karlsruhe Ost' ? 'selected' : ''}>Karlsruhe Ost</option>
+                    <option value="Karlsruhe Süd" ${param.kasued == 'Karlsruhe Süd' ? 'selected' : ''}>Karlsuhe Süd</option>
+                    <option value="Karlsruhe West" ${param.kawest == 'Karlsruhe West' ? 'selected' : ''}>Karlsuhe West</option>
+                </select>
                 
                 <%-- Zahlungsmethode --%>
                 <label for="zahlungsmethode">Zahlungsmethode:

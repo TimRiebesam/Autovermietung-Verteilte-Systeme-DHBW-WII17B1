@@ -20,6 +20,7 @@ import dhbwka.wwi.vertsys.javaee.upp.buchung.jpa.Buchung;
 import dhbwka.wwi.vertsys.javaee.upp.common.jpa.User;
 import dhbwka.wwi.vertsys.javaee.upp.kunde.jpa.Kunde;
 import java.io.IOException;
+import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -29,6 +30,11 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.util.Date;
+import java.text.SimpleDateFormat;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 
 /**
  *
@@ -48,16 +54,30 @@ public class BuchungSaveServlet extends HttpServlet {
         
         String username = request.getParameter("signup_username");
         
-        //Kunde Session ID
+        //Kundenname Session ID
         User user = (User) request.getSession().getAttribute("user");
-       String kunde = user.getVorname();
+       String kunde = user.getVorname() + " " + user.getNachname();
        request.setAttribute("kunde", kunde);
         
-        //Auto Session ID
+        //Fahrzeug Session ID
         Auto bookedAuto = (Auto) request.getSession().getAttribute("bookedAuto");
-        String fahrzeug = bookedAuto.getMarke()+bookedAuto.getModell();
-        request.setAttribute("fahrzeug", fahrzeug);
-        System.out.println(bookedAuto.getMarke()+bookedAuto.getModell());
+        String fahrzeug = bookedAuto.getMarke()+ " " +bookedAuto.getModell();
+        double preis = bookedAuto.getPreis();
+         request.setAttribute("fahrzeug", fahrzeug);
+         request.setAttribute("preis", preis);
+        
+        // Datum
+        Date vonDate = (Date) request.getSession().getAttribute("vonDatum");
+        request.setAttribute("startdatum", vonDate);
+        Date bisDate = (Date) request.getSession().getAttribute("bisDatum");
+        request.setAttribute("enddatum", bisDate);
+        
+       
+        
+        
+        
+        
+        
 
         // Anfrage an die JSP weiterleiten
         request.getRequestDispatcher("/WEB-INF/buchung/buchung.jsp").forward(request, response);
@@ -69,13 +89,31 @@ public class BuchungSaveServlet extends HttpServlet {
         
         List<String> infos = new ArrayList<>();
         
+        
+        //Datenbank
+        Auto bookedAuto = (Auto) request.getSession().getAttribute("bookedAuto");
+       User user = (User) request.getSession().getAttribute("user");
+       Date startDatum = (Date) request.getSession().getAttribute("vonDatum");
+       Date endDatum = (Date) request.getSession().getAttribute("bisDatum");    
+       //double diff = endDatum.getTime() - startDatum.getTime(); 
+       //double diffDays = diff / (24 * 60 * 60 * 1000);
+       //double buchungPreis = diffDays * bookedAuto.getPreis();
+       double buchungPreis = bookedAuto.getPreis();
+       String d_abholort = request.getParameter("abholort");
+        Buchung buchung = new Buchung(bookedAuto, user, startDatum, endDatum, buchungPreis, d_abholort);
+        buchungBean.saveNew(buchung);
+        
  
+        //Email
         String buchungsId = request.getParameter("buchungsId");
-        String kunde = request.getParameter("kunde");
-        String fahrzeug = request.getParameter("fahrzeug");
-        String startdatum = request.getParameter("startdatum");
-        String enddatum = request.getParameter("enddatum");
-        String preis = request.getParameter("preis");
+       String e_kunde = user.getVorname() + " " + user.getNachname();
+       String e_email = user.getEmail();
+        String e_fahrzeug = bookedAuto.getMarke()+ " " +bookedAuto.getModell();
+        double e_preis = bookedAuto.getPreis();
+        
+        Date e_vonDate = (Date) request.getSession().getAttribute("vonDatum");
+        Date e_bisDate = (Date) request.getSession().getAttribute("bisDatum");
+        
         String abholort = request.getParameter("abholort");
         String zahlungsmethode = request.getParameter("zahlungsmethode");
         
@@ -104,19 +142,19 @@ public class BuchungSaveServlet extends HttpServlet {
 			Message message = new MimeMessage(session);
 			message.setFrom(new InternetAddress("lagerteamapp2018@gmail.com"));
 			message.setRecipients(Message.RecipientType.TO,
-				InternetAddress.parse("11marci11@gmail.com"));
+				InternetAddress.parse(e_email));
 			message.setSubject("Buchungsbestätigung: Ihre Bestellung beim Auto-Mietservice");
-			message.setText("Hallo "+kunde+","
+			message.setText("Hallo "+e_kunde+","
 				+ "\n\n vielen Dank für Ihre Bestellung beim Auto-Mietservice."
                                 + "\n\n Hier eine Übersicht Ihrer Bestellung mit dem Link für die Rückgabe des Fahrzeugs."
                                 + "\n\n BuchungsID: "+buchungsId+"."
-                                + "\n\n Fahrzeug: "+fahrzeug+"."
-                                + "\n\n Preis: "+preis+"."
-                                + "\n\n Start-Datum: "+startdatum+"."
-                                + "\n\n End-Datum: "+enddatum+"."
+                                + "\n\n Fahrzeug: "+e_fahrzeug+"."
+                                + "\n\n Preis: "+e_preis+"."
+                                + "\n\n Start-Datum: "+e_vonDate+"."
+                                + "\n\n End-Datum: "+e_bisDate+"."
                                 + "\n\n Abholort: "+abholort+"."
                                 + "\n\n Zahlungsmethode: "+zahlungsmethode+"."
-                                + "Sie können Ihre Fahrzeug über folgenden  Link (https://localhost:8443/upp/app/rueckgabe/new?id="+buchungsId+") zurück geben: <a>."
+                                + "Sie können Ihre Fahrzeug über folgenden  Link (https://localhost:8443/upp/app/rueckgabe/new?id="+buchungsId+") zurück geben.."
                                 );
 
 			Transport.send(message);

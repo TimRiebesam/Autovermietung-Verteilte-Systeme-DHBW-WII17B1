@@ -94,8 +94,8 @@ public class InitBean {
         autoBean.saveAuto(new Auto("Porsche", "911", "L 4.519 mm <br>B 1.852 mm <br>H 1.300 mm", "Sonstige", "Benzin", 2, 2, "Automatik", 4020, 150, "https://cdn.meinauto.de/car-pics/___Pix-NoBrand/PORSCHE/911/7/2Coupe%20CarreraS/porsche_17911carrerasco7fa_angularfront_nb-298.jpg"));
         
         
-        Buchung buchung1 = new Buchung(auto1, userBean.getCurrentUser(), "1", new Date(), new Date(), 0, "Karlsruhe Süd");
-        Buchung buchung2 = new Buchung(auto2, userBean.getCurrentUser(), "2", new Date(), new Date(), 0, "Karlsruhe Mitte");
+        Buchung buchung1 = new Buchung(auto1, userBean.getCurrentUser(), new Date(), new Date(), 0, "Karlsruhe Süd");
+        Buchung buchung2 = new Buchung(auto2, userBean.getCurrentUser(), new Date(), new Date(), 0, "Karlsruhe Mitte");
         buchungBean.saveBuchung(buchung1);
         buchungBean.saveBuchung(buchung2);
         
