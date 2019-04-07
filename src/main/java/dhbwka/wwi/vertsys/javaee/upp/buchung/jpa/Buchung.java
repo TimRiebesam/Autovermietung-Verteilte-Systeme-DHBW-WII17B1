@@ -47,14 +47,11 @@ public class Buchung implements Serializable{
     @NotNull(message = "Zu einer Buchung wird ein Auto benötigt.")
     private Auto auto;
     
-    @Lob
-    private String buchungNr;
-    
     private Date startDatum;
     
     private Date endDatum;
     
-    private int buchungPreis;
+    private double buchungPreis;
     
     private String buchungAbholort;
     
@@ -66,8 +63,7 @@ public class Buchung implements Serializable{
         
     }
     
-    public Buchung(Auto auto, User user, String buchungNr, Date startDatum, Date endDatum, int buchungPreis, String buchungAbholort){
-        this.buchungNr = buchungNr;
+    public Buchung(Auto auto, User user, Date startDatum, Date endDatum, double buchungPreis, String buchungAbholort){
         this.startDatum = new Date();
         this.endDatum = new Date();
         this.buchungPreis = buchungPreis;
@@ -78,14 +74,6 @@ public class Buchung implements Serializable{
 
     public long getId() {
         return id;
-    }
-
-    public String getBuchungNr() {
-        return buchungNr;
-    }
-
-    public void setBuchungNr(String buchungNr) {
-        this.buchungNr = buchungNr;
     }
 
     public Date getStartDatum() {
@@ -104,7 +92,7 @@ public class Buchung implements Serializable{
         this.endDatum = endDatum;
     }
 
-    public int getBuchungPreis() {
+    public double getBuchungPreis() {
         return buchungPreis;
     }
 

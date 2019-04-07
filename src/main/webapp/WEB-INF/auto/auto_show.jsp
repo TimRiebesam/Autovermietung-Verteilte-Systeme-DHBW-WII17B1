@@ -25,13 +25,7 @@
             <a href="<c:url value="/app/dashboard/"/>">Dashboard</a>
         </div>
 
-        <div class="menuitem">
-            <a href="<c:url value="/app/tasks/task/new/"/>">Aufgabe anlegen</a>
-        </div>
-
-        <div class="menuitem">
-            <a href="<c:url value="/app/tasks/categories/"/>">Kategorien bearbeiten</a>
-        </div>
+       
 
 
 
