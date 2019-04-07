@@ -52,6 +52,16 @@ public class BuchungSaveServlet extends HttpServlet {
     public void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         
+         try {
+         String s_date1 = (String) request.getSession().getAttribute("Datum1");
+         String s_date2 = (String) request.getSession().getAttribute("Datum2");
+            Date startDatum;
+            Date endDatum;
+            startDatum = new SimpleDateFormat("yyyy-MM-dd").parse(s_date1);
+            endDatum = new SimpleDateFormat("yyyy-MM-dd").parse(s_date2);
+            double diff = endDatum.getTime() - startDatum.getTime(); 
+            double diffDays = diff / (24 * 60 * 60 * 1000);
+            
         String username = request.getParameter("signup_username");
         
         //Kundenname Session ID
@@ -62,8 +72,11 @@ public class BuchungSaveServlet extends HttpServlet {
         //Fahrzeug Session ID
         Auto bookedAuto = (Auto) request.getSession().getAttribute("bookedAuto");
         String fahrzeug = bookedAuto.getMarke()+ " " +bookedAuto.getModell();
-        double preis = bookedAuto.getPreis();
+        double preis = diffDays * bookedAuto.getPreis();
          request.setAttribute("fahrzeug", fahrzeug);
+
+        // Preis
+        
          request.setAttribute("preis", preis);
         
         // Datum
@@ -81,7 +94,12 @@ public class BuchungSaveServlet extends HttpServlet {
 
         // Anfrage an die JSP weiterleiten
         request.getRequestDispatcher("/WEB-INF/buchung/buchung.jsp").forward(request, response);
-    }//end of doGet
+
+         
+         } catch (ParseException ex) {
+            Logger.getLogger(BuchungSaveServlet.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
     
     @Override
     public void doPost(HttpServletRequest request, HttpServletResponse response)
@@ -102,33 +120,25 @@ public class BuchungSaveServlet extends HttpServlet {
             startDatum = new SimpleDateFormat("yyyy-MM-dd").parse(s_date1);
             endDatum = new SimpleDateFormat("yyyy-MM-dd").parse(s_date2);
             System.out.println(endDatum);
-            double buchungPreis = bookedAuto.getPreis();
+            double diff = endDatum.getTime() - startDatum.getTime(); 
+            double diffDays = diff / (24 * 60 * 60 * 1000);
+            double buchungPreis = diffDays * bookedAuto.getPreis();
             String d_abholort = request.getParameter("abholort");
         
             Buchung buchung = new Buchung(bookedAuto, user, startDatum, endDatum, buchungPreis, d_abholort);
             buchungBean.saveNew(buchung);
-        } catch (ParseException ex) {
-            Logger.getLogger(BuchungSaveServlet.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        
-       //double diff = endDatum.getTime() - startDatum.getTime(); 
-       //double diffDays = diff / (24 * 60 * 60 * 1000);
-       //double buchungPreis = diffDays * bookedAuto.getPreis();
-
-        
- 
-        //Email
-        String buchungsId = "noch leer  ";
-        User user = (User) request.getSession().getAttribute("user");
-         Auto bookedAuto = (Auto) request.getSession().getAttribute("bookedAuto");
+            
+            
+             //Email  
+        buchung.getId();
+        long buchungsId = buchung.getId();
        String e_kunde = user.getVorname() + " " + user.getNachname();
        String e_email = user.getEmail();
         String e_fahrzeug = bookedAuto.getMarke()+ " " +bookedAuto.getModell();
-        double e_preis = bookedAuto.getPreis();
-        
-        Date e_vonDate = (Date) request.getSession().getAttribute("vonDatum");
-        Date e_bisDate = (Date) request.getSession().getAttribute("bisDatum");
-        
+        double e_preis = buchungPreis;
+        Date e_vonDate = startDatum;
+        Date e_bisDate = endDatum;
+
         String abholort = request.getParameter("abholort");
         String zahlungsmethode = request.getParameter("zahlungsmethode");
         
@@ -183,6 +193,16 @@ public class BuchungSaveServlet extends HttpServlet {
                 doGet(request, response);
             
         }
+            
+        } catch (ParseException ex) {
+            Logger.getLogger(BuchungSaveServlet.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+
+
+        
+ 
+       
         
         
         
