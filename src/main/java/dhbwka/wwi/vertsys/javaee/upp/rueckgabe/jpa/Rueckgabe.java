@@ -12,9 +12,9 @@
 
 package dhbwka.wwi.vertsys.javaee.upp.rueckgabe.jpa;
 
-import dhbwka.wwi.vertsys.javaee.upp.buchung.ejb.BuchungBean;
 import dhbwka.wwi.vertsys.javaee.upp.buchung.jpa.Buchung;
 import java.io.Serializable;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -104,8 +104,8 @@ public class Rueckgabe implements Serializable{
         this.schadensMeldung = schadensMeldung;
     }
 
-    public Date getRueckgabeDatum() {
-        return rueckgabeDatum;
+    public String getRueckgabeDatum() {
+        return new SimpleDateFormat("dd.MM.yyyy").format(this.rueckgabeDatum);
     }
 
     public void setRueckgabeDatum(Date rueckgabeDatum) {

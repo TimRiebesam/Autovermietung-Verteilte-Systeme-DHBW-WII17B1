@@ -11,6 +11,7 @@
 
 package dhbwka.wwi.vertsys.javaee.upp.rueckgabe.ejb;
 
+import dhbwka.wwi.vertsys.javaee.upp.buchung.jpa.Buchung;
 import dhbwka.wwi.vertsys.javaee.upp.common.ejb.EntityBean;
 import dhbwka.wwi.vertsys.javaee.upp.rueckgabe.jpa.Rueckgabe;
 import java.util.List;
@@ -32,6 +33,10 @@ public class RueckgabeBean extends EntityBean<Rueckgabe, Long> {
     
     public List<Rueckgabe> getAllRueckgaben(){
         return em.createQuery("SELECT r FROM Rueckgabe r").getResultList();
+    }
+    
+    public List<Rueckgabe> getRueckgabenByBuchung(Buchung buchung){
+        return em.createQuery("SELECT r FROM Rueckgabe r WHERE r.buchung LIKE :buchung").setParameter("buchung", buchung).getResultList();
     }
     
     public Rueckgabe getRueckgabe(long id){
