@@ -10,6 +10,7 @@
 package dhbwka.wwi.vertsys.javaee.upp.common.ejb;
 
 import dhbwka.wwi.vertsys.javaee.upp.common.jpa.User;
+import java.util.List;
 import javax.annotation.Resource;
 import javax.annotation.security.RolesAllowed;
 import javax.ejb.EJBContext;
@@ -25,7 +26,7 @@ public class UserBean {
 
     @PersistenceContext
     EntityManager em;
-    
+
     @Resource
     EJBContext ctx;
 
@@ -38,11 +39,19 @@ public class UserBean {
         return this.em.find(User.class, this.ctx.getCallerPrincipal().getName());
     }
 
+    public List<User> getAllUser() {
+        return em.createQuery("SELECT r FROM User r").getResultList();
+    }
+
+    public User getUser(String username) {
+        return em.find(User.class, username);
+    }
+
     /**
      *
      * @param username
      * @param password
-
+     *
      * @throws UserBean.UserAlreadyExistsException
      */
     public void signup(String username, String password, String vorname, String nachname, String email, String tel, String strasse, String plz, String ort) throws UserAlreadyExistsException {
@@ -57,6 +66,7 @@ public class UserBean {
 
     /**
      * Passwort ändern (ohne zu speichern)
+     *
      * @param user
      * @param oldPassword
      * @param newPassword
@@ -70,18 +80,20 @@ public class UserBean {
 
         user.setPassword(newPassword);
     }
-    
+
     /**
      * Benutzer löschen
+     *
      * @param user Zu löschender Benutzer
      */
     @RolesAllowed("app-user")
     public void delete(User user) {
         this.em.remove(user);
     }
-    
+
     /**
      * Benutzer aktualisieren
+     *
      * @param user Zu aktualisierender Benutzer
      * @return Gespeicherter Benutzer
      */
@@ -89,8 +101,6 @@ public class UserBean {
     public User update(User user) {
         return em.merge(user);
     }
-
-
 
     /**
      * Fehler: Der Benutzername ist bereits vergeben
