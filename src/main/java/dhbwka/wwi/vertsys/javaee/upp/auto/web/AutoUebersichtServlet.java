@@ -13,6 +13,9 @@ package dhbwka.wwi.vertsys.javaee.upp.auto.web;
 import dhbwka.wwi.vertsys.javaee.upp.auto.ejb.AutoBean;
 import dhbwka.wwi.vertsys.javaee.upp.auto.jpa.Auto;
 import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import javax.ejb.EJB;
 import javax.servlet.ServletException;
@@ -37,8 +40,7 @@ public class AutoUebersichtServlet extends HttpServlet{
     @Override
     public void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
-        Auto auto1;
+              
         //Liest den Typ der angefragten Autos aus der URL
         String typ = request.getParameter("typ");
         if(typ == null){
@@ -46,9 +48,6 @@ public class AutoUebersichtServlet extends HttpServlet{
         }
         else{
             List<Auto> autos = autoBean.getAutoByTyp(typ);
-            autos.forEach(auto -> {
-              System.out.println(auto.getId());
-            });
             
             request.setAttribute("autos", autos);
         }

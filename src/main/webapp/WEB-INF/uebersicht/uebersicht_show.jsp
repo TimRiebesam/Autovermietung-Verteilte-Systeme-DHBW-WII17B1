@@ -39,8 +39,14 @@
             <a href="#">
                 <img class="img-responsive img-rounded" src="" alt="">
             </a>
+                    <a href="/upp/app/zeitraum">
+                       <button id="button2" class="icon-pencil" type="submit" name="action" value="save">
+                           <td>zurück</td> 
+                       </button>
+                   </a>
+                      
             <h2>
-                Fahrzeugwahl
+                Welcher Typ soll das Fahrzeug sein?
             </h2>
             <div class="flex-item">
                 <a href="uebersicht?typ=Sportwagen">
@@ -48,6 +54,7 @@
                         Sportwagen
                     </button> 
                 </a>
+
                 <a href="uebersicht?typ=Limousine">
                     <button id="button1" class="icon-pencil" type="submit" name="action" value="save">
                         Limousine
@@ -69,17 +76,18 @@
                     </button> 
                 </a>
             </div> 
+            
             <div class="flex-item">
-                        <c:forEach items="${autos}" var="auto">
-                            <tr>     
-                                <a href="details?id=${auto.getId()}">
-                                <button id="button2" class="icon-pencil" type="submit" name="action" value="save">
-                                    <td>${auto.getMarke()}</td> 
-                                </button>
-                                </a>
-                            </tr>
-                        </c:forEach>
-            </div>
+              <c:forEach items="${autos}" var="auto">
+                   <tr>     
+                   <a href="details?id=${auto.getId()}">
+                       <button id="button2" class="icon-pencil" type="submit" name="action" value="save">
+                           <td>${auto.getMarke()}</td> 
+                       </button>
+                   </a>
+                   </tr>
+               </c:forEach>
+           </div>
         </div>
         <!-- /.row -->
 

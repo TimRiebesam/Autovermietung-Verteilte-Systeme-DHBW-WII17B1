@@ -25,12 +25,9 @@
         </div>
 
         <div class="menuitem">
-            <a href="<c:url value="/app/tasks/task/new/"/>">Aufgabe anlegen</a>
+            <a href="<c:url value="/app/zeitraum"/>">Auto reservieren</a>
         </div>
 
-        <div class="menuitem">
-            <a href="<c:url value="/app/tasks/categories/"/>">Kategorien bearbeiten</a>
-        </div>
     </jsp:attribute>
 
     <jsp:attribute name="content">
