@@ -24,6 +24,7 @@ public class AutovermietungRestApi extends Application{
 
         // Hier für jede Webservice-Klasse eine Zeile hinzufügen
         resources.add(RueckgabeResource.class);
+        resources.add(UserResource.class);
 
         return resources;
     }
