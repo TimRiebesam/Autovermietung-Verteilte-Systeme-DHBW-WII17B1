@@ -12,25 +12,22 @@
 
 <template:base>
     <jsp:attribute name="title">
-        Rueckgabe gespeichert
+        Buchungszeitraum
     </jsp:attribute>
 
     <jsp:attribute name="head">
         <%-- <link rel="stylesheet" href="<c:url value="/css/task_list.css"/>" /> --%>
     </jsp:attribute>
 
-    <jsp:attribute name="menu">
+   <jsp:attribute name="menu">
         <div class="menuitem">
-            <a href="<c:url value="/app/dashboard/"/>">Dashboard</a>
+            <a href="<c:url value="/app/zeitraum"/>">Auto reservieren</a>
         </div>
 
         <div class="menuitem">
-            <a href="<c:url value="/app/tasks/task/new/"/>">Aufgabe anlegen</a>
+            <a href="<c:url value="/app/rueckgabe/new"/>">Auto zurückgeben</a>
         </div>
 
-        <div class="menuitem">
-            <a href="<c:url value="/app/tasks/categories/"/>">Kategorien bearbeiten</a>
-        </div>
     </jsp:attribute>
 
         <jsp:attribute name="content">
