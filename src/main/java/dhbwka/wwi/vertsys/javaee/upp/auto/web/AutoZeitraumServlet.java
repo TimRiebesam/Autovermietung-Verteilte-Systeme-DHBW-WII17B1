@@ -51,8 +51,8 @@ public class AutoZeitraumServlet extends HttpServlet {
             Date date1 = new SimpleDateFormat("yyyy-MM-dd").parse(beginDate);
             Date date2 = new SimpleDateFormat("yyyy-MM-dd").parse(endDate);
             if (date1 != null && date2 != null && (date2.compareTo(date1) == 1 || date2.compareTo(date1) == 0)) {
-                request.getSession().setAttribute("vonDatum", beginDate);
-                request.getSession().setAttribute("bisDatum", endDate);
+                request.getSession().setAttribute("Datum1", beginDate);
+                request.getSession().setAttribute("Datum2", endDate);
                 response.sendRedirect(WebUtils.appUrl(request, "/app/uebersicht"));
             }
             else{
