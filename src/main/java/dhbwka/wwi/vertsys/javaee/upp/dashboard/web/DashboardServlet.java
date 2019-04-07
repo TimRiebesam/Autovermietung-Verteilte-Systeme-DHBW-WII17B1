@@ -27,10 +27,6 @@ import javax.servlet.http.HttpServletResponse;
  */
 @WebServlet(urlPatterns = {"/app/dashboard/"})
 public class DashboardServlet extends HttpServlet {
-
-    // Kacheln für Aufgaben
-    @EJB(beanName = "tasks")
-    DashboardContentProvider taskContent;
     
     @EJB
     UserBean userBean;
@@ -38,14 +34,6 @@ public class DashboardServlet extends HttpServlet {
     @Override
     public void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-
-        request.getSession().setAttribute("kunde", userBean.getCurrentUser());
-        
-        // Dashboard-Rubriken und Kacheln erzeugen und im Request Context ablegen
-        List<DashboardSection> sections = new ArrayList<>();
-        request.setAttribute("sections", sections);
-        
-        taskContent.createDashboardContent(sections);
 
         // Anfrage an die JSP weiterleiten
         request.getRequestDispatcher("/WEB-INF/dashboard/dashboard.jsp").forward(request, response);
